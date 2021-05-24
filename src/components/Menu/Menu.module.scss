@@ -1,0 +1,23 @@
+.menu {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #F5D978;
+    z-index: 1000;
+
+    &Li {
+        border-bottom: 1px solid #108A7D;
+        height: 128px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 55px;
+        font-family: Rationale;
+        text-transform: uppercase;
+        color: #108A7D;
+
+        &:first-of-type {
+            justify-content: flex-end;
+        }
+    }
+}
