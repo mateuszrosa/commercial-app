@@ -9,7 +9,13 @@ header {
 
     color: #108A7D;
 
-    h1 {
+    a {
         font-size: 55px;
+        text-decoration: none;
+        color: #108A7D;
+    }
+
+    svg {
+        cursor: pointer;
     }
 }

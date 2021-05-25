@@ -4,10 +4,12 @@
     height: 100%;
     background: #F5D978;
     z-index: 1000;
+    transition: .75s ease;
+    transform: translateY(-100%);
 
     &Li {
         border-bottom: 1px solid #108A7D;
-        height: 128px;
+        height: 20%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -19,5 +21,18 @@
         &:first-of-type {
             justify-content: flex-end;
         }
+
+        svg {
+            cursor: pointer;
+        }
+
+        a {
+            text-decoration: none;
+            color: #108A7D;
+        }
     }
+}
+
+.show {
+    transform: translateY(0);
 }
