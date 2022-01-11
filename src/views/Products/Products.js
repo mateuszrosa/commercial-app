@@ -13,12 +13,7 @@ const Products = ({ cart, setCart }) => {
     return (
         <div className={styles.products}>
             {cart > 0 && <Cart cart={cart} />}
-
             {bikes.map(bike => <Product setCart={setCart} cart={cart} bike={bike} key={bike.id}/>)}
-            {/* <Product setCart={setCart} cart={cart} img={bike1} />
-            <Product setCart={setCart} cart={cart} img={bike2} />
-            <Product setCart={setCart} cart={cart} img={mtb1} />
-            <Product setCart={setCart} cart={cart} img={mtb2} /> */}
         </div>
     );
 }
