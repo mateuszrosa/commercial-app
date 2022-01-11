@@ -4,6 +4,7 @@ import Header from "../../components/Header/Header";
 import Main from '../../components/Main/Main';
 import Menu from '../../components/Menu/Menu';
 import Products from '../Products/Products';
+import Cart from '../Cart/Cart';
 import './index.css';
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
         </Route>
         <Route exact path="/products">
           <Products cart={cart} setCart={setCart} />
+        </Route>
+        <Route exact path="/cart">
+          <Cart />
         </Route>
       </Switch>
     </Router>
