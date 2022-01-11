@@ -3,7 +3,7 @@ import styles from './Product.module.scss';
 import { Icon } from '@iconify/react';
 import shoppingCartOutlined from '@iconify-icons/ant-design/shopping-cart-outlined';
 
-const Product = ({ setCart, cart, img }) => {
+const Product = ({ setCart, cart, img, bike }) => {
 
     const refContainer = useRef(null);
 
@@ -17,11 +17,11 @@ const Product = ({ setCart, cart, img }) => {
     }
     return (
         <div className={styles.product}>
-            <h3>products name</h3>
-            <img src={img} alt="bike" />
+            <h3>{bike.name}</h3>
+            <img src={bike.img} alt="bike" />
             <div className={styles.productInfo}>
-                <h4>price</h4>
-                <p>short info</p>
+                <h4>{bike.price},-</h4>
+                <p>{bike.description}</p>
                 <div className={styles.adding}>
                     <input ref={refContainer} type="number" name="" id="" />
                     <button onClick={addToCart} >

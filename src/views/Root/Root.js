@@ -5,6 +5,8 @@ import Main from '../../components/Main/Main';
 import Menu from '../../components/Menu/Menu';
 import Products from '../Products/Products';
 import Cart from '../Cart/Cart';
+import { Provider } from "react-redux";
+import {store} from '../../store';
 import './index.css';
 
 function App() {
@@ -13,6 +15,7 @@ function App() {
   const [cart, setCart] = useState(0);
 
   return (
+    <Provider store={store}>
     <Router>
       <Header open={open} setOpen={setOpen} />
       <Menu open={open} setClose={setOpen} />
@@ -28,6 +31,7 @@ function App() {
         </Route>
       </Switch>
     </Router>
+    </Provider>
   );
 }
 
