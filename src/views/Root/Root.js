@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Main from '../../components/Main/Main';
@@ -9,6 +9,7 @@ import './index.css';
 function App() {
 
   const [open, setOpen] = useState(false);
+  const [cart, setCart] = useState(0);
 
   return (
     <Router>
@@ -19,7 +20,7 @@ function App() {
           <Main />
         </Route>
         <Route exact path="/products">
-          <Products />
+          <Products cart={cart} setCart={setCart} />
         </Route>
       </Switch>
     </Router>
