@@ -33,6 +33,13 @@ const initialState = {
             price: 4500,
             img: mtb2
         }
+    ],
+    users: [
+        {
+            username: 'parik',
+            password: 'parik123',
+            email: 'eloraper@gmail.com'
+    }
     ]
 };
 

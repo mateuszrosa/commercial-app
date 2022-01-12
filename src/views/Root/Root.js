@@ -5,6 +5,7 @@ import Main from '../../components/Main/Main';
 import Menu from '../../components/Menu/Menu';
 import Products from '../Products/Products';
 import Cart from '../Cart/Cart';
+import Userpage from '../Userpage/Userpage';
 import { Provider } from "react-redux";
 import {store} from '../../store';
 import './index.css';
@@ -28,6 +29,9 @@ function App() {
         </Route>
         <Route exact path="/cart">
           <Cart />
+        </Route>
+        <Route exact path="/login">
+          <Userpage />
         </Route>
       </Switch>
     </Router>

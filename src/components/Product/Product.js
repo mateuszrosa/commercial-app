@@ -10,7 +10,6 @@ const Product = ({ setCart, cart, img, bike }) => {
     const addToCart = () => {
         const value = Number(refContainer.current.value);
         if (refContainer.current.value !== "" && value >= 1) {
-            console.log(refContainer.current.value);
             setCart(cart + value);
             refContainer.current.value = null;
         }
