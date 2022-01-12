@@ -1,3 +1,38 @@
 .userpage {
+    height: calc(100% - 90px);
     margin-top: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .container {
+        border: 1px solid black;
+        width: 75%;
+        height: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        position: relative;
+
+        h2 {
+            position: absolute;
+            top: 15px;
+            text-transform: uppercase;
+        }
+
+        form {
+            text-align: center;
+            width: 70%;
+
+            input {
+                width: 100%;
+
+                &[type="submit"] {
+                    width: 50%;
+                }
+            }
+        }
+
+    }
 }
