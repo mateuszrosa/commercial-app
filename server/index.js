@@ -1,15 +1,8 @@
 const express = require('express');
-const {MongoClient} = require('mongodb');
+const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 dotenv.config();
 const connectionString = process.env.NODE_DATABASE;
-
-
-MongoClient.connect(connectionString, { useUnifiedTopology: true })
-  .then(client => {
-    console.log('Connected to Database')
-  })
-  .catch(error => console.error(error))
 
 const app = express();
 const port = 3500;
@@ -20,4 +13,8 @@ app.get('/', (req, res) => {
 
 app.listen(port, () => {
     console.log(`Server listening on ${port}`);
+
+    mongoose.connect(process.env.NODE_DATABASE, () => {
+        console.log('Mongo DB is connected');
+    })
 })
