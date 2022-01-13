@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,KAAK,AAAC,CACF,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,MAAM,CACtB,eAAe,CAAE,MAAM,CACvB,WAAW,CAAE,MAAM,CACnB,UAAU,CAAE,IAAI,CACnB",
-    "sources": [
-        "../client/src/views/Cart/Cart.module.scss"
-    ],
-    "names": [],
-    "file": "Cart.module.css"
-}
