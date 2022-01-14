@@ -37,20 +37,22 @@ const initialState = {
             price: 4500,
             img: mtb2
         }
-    ],
-    users: [
-        {
-            username: 'parik',
-            password: 'parik123',
-            email: 'eloraper@gmail.com'
-    }
     ]
 };
 
 export const rootReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'ADD': {
+        case LOGIN_REQUEST: {
             return state;
+        }
+        case LOGIN_SUCCESS: {
+            return {
+                ...state,
+                user: {
+                    userId: action.payload.data._id,
+                    ...action.payload.data
+                }
+            }
         }
             default:
         return state;

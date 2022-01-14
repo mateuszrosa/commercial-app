@@ -9,12 +9,10 @@ export const login = (login, password) => dispatch => {
         login,
         password,
       });
-      console.log(params);
       dispatch({ type: LOGIN_REQUEST });
   return axios
     .get(`http://localhost:3500/user/login/?${params}`)
     .then((payload) => {
-        console.log(payload);
       return dispatch({ type: LOGIN_SUCCESS, payload });
     })
     .catch(({ response }) => {
