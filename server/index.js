@@ -1,20 +1,18 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import {app} from './app';
+import { router } from './routes';
+
 dotenv.config();
 const connectionString = process.env.NODE_DATABASE;
 
-const app = express();
 const port = 3500;
-
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
 
 app.listen(port, () => {
     console.log(`Server listening on ${port}`);
+    app.use(router);
 
-    mongoose.connect(process.env.NODE_DATABASE, () => {
+    mongoose.connect(connectionString, () => {
         console.log('Mongo DB is connected');
     })
 })

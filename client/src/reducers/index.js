@@ -3,6 +3,10 @@ import bike2 from '../images/trek.png';
 import mtb1 from '../images/mtb1.png';
 import mtb2 from '../images/mtb2.png';
 
+import {LOGIN_REQUEST} from '../actions';
+import {LOGIN_SUCCESS} from '../actions';
+import {LOGIN_FAILURE} from '../actions';
+
 const initialState = {
     bikes: [
         {

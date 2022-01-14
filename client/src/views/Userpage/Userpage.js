@@ -1,15 +1,17 @@
 import { useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {login} from '../../actions';
 import styles from './Userpage.module.scss';
 
 const Userpage = () => {
 
+    const dispatch = useDispatch();
     const username = useRef(null);
     const password = useRef(null);
 
     const logIn = (e) => {
         e.preventDefault();
-        console.log(username.current.value);
-        console.log(password.current.value);
+        dispatch(login(username.current.value, password.current.value))
         username.current.value = "";
         password.current.value = "";
     }
