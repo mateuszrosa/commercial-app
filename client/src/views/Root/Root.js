@@ -15,6 +15,8 @@ function App() {
   const [open, setOpen] = useState(false);
   const [cart, setCart] = useState(0);
 
+  let hasAccount = true;
+
   return (
     <Provider store={store}>
     <Router>
@@ -31,7 +33,10 @@ function App() {
           <Cart />
         </Route>
         <Route exact path="/login">
-          <Userpage />
+          <Userpage hasAccount={hasAccount} />
+        </Route>
+        <Route exact path="/register">
+          <Userpage hasAccount={!hasAccount} />
         </Route>
       </Switch>
     </Router>

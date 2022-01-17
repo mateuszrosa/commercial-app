@@ -17,7 +17,7 @@
 
         form {
             text-align: center;
-            width: 60%;
+            width: 65%;
 
             label {
                 font-size: 20px;
@@ -27,6 +27,7 @@
                 width: 100%;
                 height: 25px;
                 font-size: 16px;
+                text-transform: capitalize;
 
                 &[type="submit"],
                 &[type="button"] {
@@ -34,6 +35,11 @@
                     height: 23px;
                     margin-top: 10px;
                 }
+            }
+
+            a {
+                display: block;
+                width: 100%;
             }
         }
 
