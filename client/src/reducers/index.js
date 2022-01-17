@@ -1,46 +1,16 @@
-import bike1 from '../images/trek1.png';
-import bike2 from '../images/trek.png';
-import mtb1 from '../images/mtb1.png';
-import mtb2 from '../images/mtb2.png';
-
 import {LOGIN_REQUEST} from '../actions';
 import {LOGIN_SUCCESS} from '../actions';
 import {LOGIN_FAILURE} from '../actions';
 import {REGISTER_REQUEST} from '../actions';
 import {REGISTER_SUCCESS} from '../actions';
 import {REGISTER_FAILURE} from '../actions';
+import {FETCH_BIKES_REQUEST} from '../actions';
+import {FETCH_BIKES_SUCCESS} from '../actions';
+import {FETCH_BIKES_FAILURE} from '../actions';
 
 const initialState = {
-    bikes: [
-        {
-            id: 1,
-            name: 'Trek1',
-            description: "Lorem ipsum, dolors.",
-            price: 1500,
-            img: bike1
-        },
-        {
-            id: 2,
-            name: 'Trek2',
-            description: "Lorem ipsum, ",
-            price: 2500,
-            img: bike2
-        },
-        {
-            id: 3,
-            name: 'Trek3',
-            description: "Lorem ipsum,.",
-            price: 3500,
-            img: mtb1
-        },
-        {
-            id: 4,
-            name: 'Trek4',
-            description: "Lorem ipsum, ",
-            price: 4500,
-            img: mtb2
-        }
-    ]
+    bikes: [],
+    user: {}
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -81,6 +51,19 @@ export const rootReducer = (state = initialState, action) => {
                 ...state,
                 error: action.error
             }
+        }
+        case FETCH_BIKES_REQUEST: {
+            return state;
+        }
+        case FETCH_BIKES_SUCCESS: {
+            console.log(action.payload);
+            return {
+                ...state,
+                bikes: action.payload.data
+            }
+        }
+        case FETCH_BIKES_FAILURE: {
+            return state;
         }
             default:
         return state;

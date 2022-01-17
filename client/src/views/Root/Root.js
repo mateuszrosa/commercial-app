@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "../../components/Header/Header";
-import Main from '../../components/Main/Main';
+import Main from '../Main/Main';
 import Menu from '../../components/Menu/Menu';
 import Products from '../Products/Products';
 import Cart from '../Cart/Cart';

@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import {login, register} from '../../actions';
 import styles from './Userpage.module.scss';
@@ -7,6 +7,11 @@ import styles from './Userpage.module.scss';
 const Userpage = ({hasAccount}) => {
 
     const dispatch = useDispatch();
+
+    const { userId} = useSelector(({ user }) => ({
+      userId: user.userId
+    }));
+
     const username = useRef(null);
     const password = useRef(null);
     const email = useRef(null);
@@ -25,6 +30,10 @@ const Userpage = ({hasAccount}) => {
                 password.current.value = "";
                 email.current.value = ""
             }
+    }
+
+    if(userId) {
+        return <Redirect to="/" />;
     }
 
     return ( 

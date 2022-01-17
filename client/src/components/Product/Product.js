@@ -3,7 +3,7 @@ import styles from './Product.module.scss';
 import { Icon } from '@iconify/react';
 import shoppingCartOutlined from '@iconify-icons/ant-design/shopping-cart-outlined';
 
-const Product = ({ setCart, cart, img, bike }) => {
+const Product = ({ setCart, cart, bike }) => {
 
     const refContainer = useRef(null);
 
