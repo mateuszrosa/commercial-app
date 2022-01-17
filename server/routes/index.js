@@ -7,3 +7,4 @@ export const router = express.Router();
 
 //LOGGING
 router.get('/user/login', user.login);
+router.post('/user/register', user.register);

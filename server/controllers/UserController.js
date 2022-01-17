@@ -14,5 +14,15 @@ export const user = {
         console.log('Logged In!');
         user.password = undefined;
         res.json(user);
+    },
+    register: async (req,res) => {
+        const user = new User(req.body);
+        try {
+            const newUser = user.save();
+            res.json(newUser);
+            console.log('Registerd new Account');
+        } catch(e) {
+            return res.status(404).json(e.errors);
+        }
     }
 }

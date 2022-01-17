@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import {login} from '../../actions';
+import {login, register} from '../../actions';
 import styles from './Userpage.module.scss';
 
 const Userpage = ({hasAccount}) => {
@@ -11,17 +11,26 @@ const Userpage = ({hasAccount}) => {
     const password = useRef(null);
     const email = useRef(null);
 
-    const logIn = (e) => {
+    const submit = (e) => {
         e.preventDefault();
-        dispatch(login(username.current.value, password.current.value))
-        username.current.value = "";
-        password.current.value = "";
+        hasAccount ? 
+            dispatch(login(username.current.value, password.current.value))
+            :
+            dispatch(register(username.current.value, email.current.value, password.current.value));
+            if(hasAccount) {
+                username.current.value = "";
+                password.current.value = "";
+            } else {
+                username.current.value = "";
+                password.current.value = "";
+                email.current.value = ""
+            }
     }
 
     return ( 
         <div className={styles.userpage}>
             <div className={styles.container}>
-            <form onSubmit={e => logIn(e)}>
+            <form onSubmit={e => submit(e)}>
                 <label htmlFor="login">Login</label>
                 <input type="text" ref={username} name="login" id="login" placeholder='Write your login'/>
                 {!hasAccount && 
