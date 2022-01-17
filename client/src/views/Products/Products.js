@@ -21,7 +21,7 @@ const Products = ({ cart, setCart }) => {
     return (
         <div className={styles.products}>
             {cart > 0 && <Cart cart={cart} />}
-            {bikes.map(bike => <Product setCart={setCart} cart={cart} bike={bike} key={bike.id}/>)}
+            {bikes.map(bike => <Product setCart={setCart} cart={cart} bike={bike} key={bike._id}/>)}
         </div>
     );
 }

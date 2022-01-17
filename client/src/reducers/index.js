@@ -56,7 +56,6 @@ export const rootReducer = (state = initialState, action) => {
             return state;
         }
         case FETCH_BIKES_SUCCESS: {
-            console.log(action.payload);
             return {
                 ...state,
                 bikes: action.payload.data
