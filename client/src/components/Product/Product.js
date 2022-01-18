@@ -47,10 +47,7 @@ export const Product = ({ setItems, items, cart, setCart, bike, cartItem }) => {
                 <>
                     <h4>{bike.price},-</h4>
                     <div className={styles.adding}>
-                        <button onClick={removeFromCart} >
-                          <Icon icon={shoppingCartOutlined} width="25px" />
-                            Remove from cart
-                        </button>
+                        <button onClick={removeFromCart}>Remove</button>
                     </div>
                 </>
               }

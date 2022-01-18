@@ -11,7 +11,11 @@ const Cart = ({cart,setCart,items,setItems}) => {
             {cart.map(item => <Product bike={item} key={item._id} cartItem/>)}
             <div className={styles.summary}>
                {cart.forEach(item => sum += item.price)}
-               Your order is {sum}$
+               Your order is: {sum}$
+               <div className={styles.buttons}>
+                    <button onClick={() => setCart([])}>Empty Cart</button>
+                    <button>Checkout</button>
+               </div>
             </div>
         </div>
      );
