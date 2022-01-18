@@ -5,6 +5,11 @@ const Cart = ({cart,setCart,items,setItems}) => {
 
     let sum = 0;
 
+    const clearCart = () => {
+        setCart([]);
+        setItems(0);
+    }
+
     return ( 
         <div className={styles.cart}>
             <h1>Your cart</h1>
@@ -13,7 +18,7 @@ const Cart = ({cart,setCart,items,setItems}) => {
                {cart.forEach(item => sum += item.price)}
                Your order is: {sum}$
                <div className={styles.buttons}>
-                    <button onClick={() => setCart([])}>Empty Cart</button>
+                    <button onClick={clearCart}>Empty Cart</button>
                     <button>Checkout</button>
                </div>
             </div>
