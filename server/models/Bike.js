@@ -21,6 +21,10 @@ const schema = new Schema({
         required: true,
         unique: true,
     },
+    amount: {
+        type: Number,
+        required: true,
+    }
 });
 
 export const Bike = mongoose.model('bike', schema);

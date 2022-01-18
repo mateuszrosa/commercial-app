@@ -2,10 +2,10 @@ import {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {fetchBikes} from '../../actions';
 import styles from './Products.module.scss';
-import Product from '../../components/Product/Product';
+import {Product} from '../../components/Product/Product';
 import Cart from '../../components/Cart/Cart';
 
-const Products = ({ cart, setCart }) => {
+const Products = ({ items, setItems, cart, setCart }) => {
 
     const dispatch = useDispatch();
 
@@ -20,8 +20,15 @@ const Products = ({ cart, setCart }) => {
 
     return (
         <div className={styles.products}>
-            {cart > 0 && <Cart cart={cart} />}
-            {bikes.map(bike => <Product setCart={setCart} cart={cart} bike={bike} key={bike._id}/>)}
+            {items > 0 && <Cart items={items} />}
+            {bikes.map(bike => <Product 
+                                    setItems={setItems} 
+                                    items={items}
+                                    cart={cart}
+                                    setCart={setCart}
+                                    bike={bike} 
+                                    key={bike._id}
+                                />)}
         </div>
     );
 }

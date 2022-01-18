@@ -13,7 +13,8 @@ import './index.css';
 function App() {
 
   const [open, setOpen] = useState(false);
-  const [cart, setCart] = useState(0);
+  const [items, setItems] = useState(0);
+  const [cart, setCart] = useState([]);
 
   let hasAccount = true;
 
@@ -27,10 +28,10 @@ function App() {
           <Main />
         </Route>
         <Route exact path="/products">
-          <Products cart={cart} setCart={setCart} />
+          <Products items={items} setItems={setItems} cart={cart} setCart={setCart} />
         </Route>
         <Route exact path="/cart">
-          <Cart />
+          <Cart items={items} setItems={setItems} cart={cart} setCart={setCart} />
         </Route>
         <Route exact path="/login">
           <Userpage hasAccount={hasAccount} />
