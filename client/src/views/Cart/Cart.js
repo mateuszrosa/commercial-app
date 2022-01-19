@@ -13,7 +13,15 @@ const Cart = ({cart,setCart,items,setItems}) => {
     return ( 
         <div className={styles.cart}>
             <h1>Your cart</h1>
-            {cart.map(item => <Product bike={item} key={item._id} cartItem/>)}
+            {cart.map(item => <Product 
+                                bike={item} 
+                                key={item._id} 
+                                setCart={setCart} 
+                                cart={cart} 
+                                items={items} 
+                                setItems={setItems} 
+                                cartItem
+                            />)}
             <div className={styles.summary}>
                {cart.forEach(item => sum += item.price)}
                Your order is: {sum}$

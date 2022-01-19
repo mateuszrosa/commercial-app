@@ -4,27 +4,30 @@ import { Icon } from '@iconify/react';
 import shoppingCartOutlined from '@iconify-icons/ant-design/shopping-cart-outlined';
 
 export const Product = ({ setItems, items, cart, setCart, bike, cartItem }) => {
-
     const refContainer = useRef(null);
 
     const addToCart = () => {
-        const value = Number(refContainer.current.value);
-        if (refContainer.current.value !== "" && value >= 1) {
-            setItems(items + value);
+        let amount = Number(refContainer.current.value);
+        if (refContainer.current.value !== "" && amount >= 1) {
+            setItems(items + amount);
             setCart(prevState => {
                 return [
                     ...prevState,
-                    bike
+                    {
+                        ...bike,
+                        amount
+                    }
                 ]
             })
             refContainer.current.value = null;
         }
-
     }
 
     const removeFromCart = () => {
-        console.log('remove');
-    }
+        setCart(prevState => prevState.filter(item => item._id != bike._id));
+        console.log(items - bike.amount);
+        setItems(prevState => prevState -= bike.amount);
+    };
 
     return (
         <div className={styles.product}>
@@ -47,6 +50,7 @@ export const Product = ({ setItems, items, cart, setCart, bike, cartItem }) => {
                 <>
                     <h4>{bike.price},-</h4>
                     <div className={styles.adding}>
+                        Amount: {bike.amount}
                         <button onClick={removeFromCart}>Remove</button>
                     </div>
                 </>
