@@ -1,5 +1,6 @@
 import styles from './Cart.module.scss';
 import {Product} from '../../components/Product/Product';
+import {Link} from 'react-router-dom';
 
 export const Cart = ({cart,setCart,items,setItems}) => {
 
@@ -27,7 +28,7 @@ export const Cart = ({cart,setCart,items,setItems}) => {
                Your order is: {sum}$
                <div className={styles.buttons}>
                     <button onClick={clearCart}>Empty Cart</button>
-                    <button>Checkout</button>
+                    <Link to="/form"><button>Checkout</button></Link>
                </div>
             </div>
         </div>

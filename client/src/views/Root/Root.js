@@ -11,7 +11,7 @@ import { Provider } from "react-redux";
 import {store} from '../../store';
 import './index.css';
 
-function App() {
+export const Root = () => {
 
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState(0);
@@ -34,7 +34,7 @@ function App() {
         <Route exact path="/cart">
           <Cart items={items} setItems={setItems} cart={cart} setCart={setCart} />
         </Route>
-        <Route exact path="form">
+        <Route exact path="/form">
           <Form cart={cart} />
         </Route>
         <Route exact path="/login">
@@ -48,5 +48,3 @@ function App() {
     </Provider>
   );
 }
-
-export default App;
