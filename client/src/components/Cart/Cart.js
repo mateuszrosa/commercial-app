@@ -3,7 +3,7 @@ import { Icon } from '@iconify/react';
 import shoppingCartOutlined from '@iconify-icons/ant-design/shopping-cart-outlined';
 import styles from './Cart.module.scss';
 
-const Cart = ({ items }) => {
+export const Cart = ({ items }) => {
 
     return (
         <Link to="/cart" className={styles.cartIcon}>
@@ -12,5 +12,3 @@ const Cart = ({ items }) => {
         </Link>
     );
 }
-
-export default Cart;

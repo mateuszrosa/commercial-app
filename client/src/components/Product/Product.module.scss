@@ -34,7 +34,9 @@
         font-size: 25px;
 
         .adding {
+            width: 100%;
             display: flex;
+            justify-content: center;
 
             input {
                 width: 50px;
@@ -50,6 +52,11 @@
                 margin-left: 5px;
                 padding: 3.5px;
             }
+        }
+
+        .cartItem {
+            @extend .adding;
+            flex-direction: column;
         }
     }
 }

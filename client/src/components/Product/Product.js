@@ -9,23 +9,23 @@ export const Product = ({ setItems, items, cart, setCart, bike, cartItem }) => {
     const addToCart = () => {
         let amount = Number(refContainer.current.value);
         if (refContainer.current.value !== "" && amount >= 1) {
+
             setItems(items + amount);
             setCart(prevState => {
                 return [
                     ...prevState,
                     {
                         ...bike,
-                        amount
+                         amount
                     }
                 ]
-            })
+        })
             refContainer.current.value = null;
         }
     }
 
     const removeFromCart = () => {
-        setCart(prevState => prevState.filter(item => item._id != bike._id));
-        console.log(items - bike.amount);
+        setCart(prevState => prevState.filter(item => item._id !== bike._id));
         setItems(prevState => prevState -= bike.amount);
     };
 
@@ -49,8 +49,8 @@ export const Product = ({ setItems, items, cart, setCart, bike, cartItem }) => {
                   :
                 <>
                     <h4>{bike.price},-</h4>
-                    <div className={styles.adding}>
-                        Amount: {bike.amount}
+                    <div className={styles.cartItem}>
+                        <p>Amount: <span>{bike.amount}</span></p>
                         <button onClick={removeFromCart}>Remove</button>
                     </div>
                 </>
@@ -59,5 +59,3 @@ export const Product = ({ setItems, items, cart, setCart, bike, cartItem }) => {
         </div>
     );
 }
-
-export default Product;

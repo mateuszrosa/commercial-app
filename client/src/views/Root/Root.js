@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Header from "../../components/Header/Header";
-import Main from '../Main/Main';
-import Menu from '../../components/Menu/Menu';
-import Products from '../Products/Products';
-import Cart from '../Cart/Cart';
-import Userpage from '../Userpage/Userpage';
+import {Header} from "../../components/Header/Header";
+import {Main} from '../Main/Main';
+import {Form} from '../Form/Form';
+import {Menu} from '../../components/Menu/Menu';
+import {Products} from '../Products/Products';
+import {Cart} from '../Cart/Cart';
+import {Userpage} from '../Userpage/Userpage';
 import { Provider } from "react-redux";
 import {store} from '../../store';
 import './index.css';
@@ -32,6 +33,9 @@ function App() {
         </Route>
         <Route exact path="/cart">
           <Cart items={items} setItems={setItems} cart={cart} setCart={setCart} />
+        </Route>
+        <Route exact path="form">
+          <Form cart={cart} />
         </Route>
         <Route exact path="/login">
           <Userpage hasAccount={hasAccount} />

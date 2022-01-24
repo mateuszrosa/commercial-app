@@ -6,7 +6,7 @@ import menuIcon from '@iconify-icons/dashicons/menu';
 
 
 
-const Header = ({open, setOpen}) => {
+export const Header = ({open, setOpen}) => {
     return ( 
         <header>
             <NavLink to="/">biker shop</NavLink>
@@ -14,5 +14,3 @@ const Header = ({open, setOpen}) => {
         </header>
      );
 }
- 
-export default Header;

@@ -1,7 +1,7 @@
 import styles from './Cart.module.scss';
 import {Product} from '../../components/Product/Product';
 
-const Cart = ({cart,setCart,items,setItems}) => {
+export const Cart = ({cart,setCart,items,setItems}) => {
 
     let sum = 0;
 
@@ -33,5 +33,3 @@ const Cart = ({cart,setCart,items,setItems}) => {
         </div>
      );
 }
- 
-export default Cart;

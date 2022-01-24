@@ -3,9 +3,9 @@ import {useSelector, useDispatch} from 'react-redux';
 import {fetchBikes} from '../../actions';
 import styles from './Products.module.scss';
 import {Product} from '../../components/Product/Product';
-import Cart from '../../components/Cart/Cart';
+import {Cart} from '../../components/Cart/Cart';
 
-const Products = ({ items, setItems, cart, setCart }) => {
+export const Products = ({ items, setItems, cart, setCart }) => {
 
     const dispatch = useDispatch();
 
@@ -32,5 +32,3 @@ const Products = ({ items, setItems, cart, setCart }) => {
         </div>
     );
 }
-
-export default Products;

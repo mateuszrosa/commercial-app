@@ -3,7 +3,7 @@ import styles from './Menu.module.scss';
 import {Icon} from '@iconify/react';
 import closeIcon from '@iconify-icons/ei/close';
 
-const Menu = ({open, setClose}) => {
+export const Menu = ({open, setClose}) => {
     return ( 
         <div className={`${styles.menu} ${open && styles.show}`} >
             <div className={styles.menuLi}>
@@ -24,5 +24,3 @@ const Menu = ({open, setClose}) => {
         </div>
      );
 }
-
-export default Menu;

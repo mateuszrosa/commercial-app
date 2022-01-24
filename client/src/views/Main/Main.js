@@ -4,7 +4,7 @@ import styles from "./Main.module.scss";
 import {Icon} from '@iconify/react';
 import bikeIcon from '@iconify-icons/et/bike';
 
-const Main = () => {
+export const Main = () => {
 
     const { userId} = useSelector(({ user }) => ({
         userId: user.userId
@@ -29,5 +29,3 @@ const Main = () => {
         </div>
      );
 }
- 
-export default Main;

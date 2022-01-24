@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {login, register} from '../../actions';
 import styles from './Userpage.module.scss';
 
-const Userpage = ({hasAccount}) => {
+export const Userpage = ({hasAccount}) => {
 
     const dispatch = useDispatch();
 
@@ -68,5 +68,3 @@ const Userpage = ({hasAccount}) => {
         </div>
      );
 }
- 
-export default Userpage;
