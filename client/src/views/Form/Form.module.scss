@@ -17,12 +17,12 @@
         input {
             width: 80%;
         }
-    }
 
-    .buttons {
-        width: 100%;
-        display: flex;
-        justify-content: space-around;
-        align-items: space-around;
+        .buttons {
+            width: 80%;
+            display: flex;
+            justify-content: space-around;
+            align-items: space-around;
+        }
     }
 }

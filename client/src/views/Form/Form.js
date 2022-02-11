@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useRef} from 'react';
 import styles from './Form.module.scss';
 
 export const Form = () => {
@@ -11,14 +11,15 @@ export const Form = () => {
     const [country, setCountry] = useState('');
     const [shippingOption, setShippingOptions] = useState('');
 
-    const submit = () => {
+    const submit = (e) => {
+        e.preventDefault();
         console.log('send');
     }
 
     return ( 
         <div className={styles.formContainer}>
             <h1>Shipping address</h1>
-            <form onSubmit={submit}>
+            <form onSubmit={(e) => submit(e)}>
                 <label htmlFor="name">First name</label>
                 <input type="text" name="name" id="name" />
 
@@ -39,11 +40,12 @@ export const Form = () => {
 
                 <label htmlFor="shippingopt">Shipping options</label>
                 <input type="text" name="shippingopt" id="shippingopt" />
-            </form>
+
             <div className={styles.buttons}>
                 <button>back to cart</button>
                 <input type="submit" value="Next" />
             </div>
+            </form>
         </div>
      );
 }

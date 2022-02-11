@@ -6,6 +6,8 @@ import shoppingCartOutlined from '@iconify-icons/ant-design/shopping-cart-outlin
 export const Product = ({ setItems, items, cart, setCart, bike, cartItem }) => {
     const refContainer = useRef(null);
 
+    console.log(bike);
+
     const addToCart = () => {
         let amount = Number(refContainer.current.value);
         if (refContainer.current.value !== "" && amount >= 1) {
@@ -32,6 +34,19 @@ export const Product = ({ setItems, items, cart, setCart, bike, cartItem }) => {
     return (
         <div className={styles.product}>
             <h3>{bike.name}</h3>
+            <img src={bike.image.url} alt={bike.image.filename} />
+            <div className={styles.productInfo}>
+                {bike.price.formatted_with_code}
+                <p dangerouslySetInnerHTML={{__html: bike.description}} />
+                <div className={styles.adding}>
+                      <input ref={refContainer} max={bike.inventory.available} type="number" name="" id="" />
+                      <button onClick={addToCart} >
+                          <Icon icon={shoppingCartOutlined} width="25px" />
+                          Add to cart
+                      </button>
+                  </div>
+            </div>
+            {/* <h3>{bike.name}</h3>
             <img src={bike.img} alt="bike" />
             <div className={styles.productInfo}>
               {!cartItem ?
@@ -55,7 +70,7 @@ export const Product = ({ setItems, items, cart, setCart, bike, cartItem }) => {
                     </div>
                 </>
               }
-            </div>
+            </div> */}
         </div>
     );
 }
