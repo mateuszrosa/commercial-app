@@ -3,10 +3,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import {commerce} from '../../lib/commerce';
 import {Header} from "../../components/Header/Header";
 import {Main} from '../Main/Main';
-import {Form} from '../Form/Form';
 import {Menu} from '../../components/Menu/Menu';
-import {Products} from '../Products/Products';
-import {Cart} from '../Cart/Cart';
+import {Products} from '../../components/Products/Products';
+import {Cart} from '../../components/Cart/Cart';
 import {Userpage} from '../Userpage/Userpage';
 import { Provider } from "react-redux";
 import {store} from '../../store';
@@ -33,6 +32,11 @@ export const Root = () => {
     setCart(item.cart);
   }
 
+  const handleEmptyCart = async () => {
+    const response = await commerce.cart.empty();
+    setCart(response.cart);
+};
+
 
 
   useEffect(() => {
@@ -52,13 +56,10 @@ export const Root = () => {
           <Main />
         </Route>
         <Route exact path="/products">
-          <Products products={products} onAddToCart={handleAddToCart} />
+          <Products products={products} onAddToCart={handleAddToCart} totalItems={cart.total_items} />
         </Route>
         <Route exact path="/cart">
-          <Cart cart={cart} setCart={setCart} />
-        </Route>
-        <Route exact path="/form">
-          <Form cart={cart} />
+          <Cart cart={cart} setCart={setCart} handleEmptyCart={handleEmptyCart} />
         </Route>
         <Route exact path="/login">
           <Userpage hasAccount={hasAccount} />
