@@ -27,13 +27,13 @@ export const Root = () => {
     setCart(cart);
   }
 
-  const handleAddToCart = async (productId, quanity) => {
-    const {cart} = await commerce.cart.add(productId, quanity);
+  const handleAddToCart = async (productId, quantity) => {
+    const {cart} = await commerce.cart.add(productId, quantity);
     setCart(cart);
   }  
 
-  const handleUpdateToCartQty = async (productId, quanity) => {
-    const {cart} = await commerce.cart.update(productId, quanity);
+  const handleUpdateToCartQty = async (productId, quantity) => {
+    const {cart} = await commerce.cart.update(productId, {quantity});
     setCart(cart);
   }
 

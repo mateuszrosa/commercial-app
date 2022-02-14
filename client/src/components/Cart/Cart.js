@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import useStyles from './styles';
 
-export const Cart = ({ cart, handleUpdateCart, handleRemoveFromCart, handleEmptyCart }) => {
+export const Cart = ({ cart, handleUpdateToCartQty, handleRemoveFromCart, handleEmptyCart }) => {
 
     const classes = useStyles();
 
@@ -21,7 +21,7 @@ export const Cart = ({ cart, handleUpdateCart, handleRemoveFromCart, handleEmpty
                     <Grid item xs={12} sm={4} key={item.id}>
                         <CartItem 
                             item={item}
-                            handleUpdateCart={handleUpdateCart}
+                            handleUpdateCart={handleUpdateToCartQty}
                             handleRemoveFromCart={handleRemoveFromCart}
                         />
                     </Grid>
