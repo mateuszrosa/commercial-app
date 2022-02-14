@@ -1,33 +1,25 @@
-import {useState, useEffect} from 'react';
-import {commerce} from '../../lib/commerce';
-import styles from './Products.module.scss';
 import {Product} from '../../components/Product/Product';
 import {Cart} from '../../components/Cart/Cart';
 
-export const Products = ({ items, setItems, cart, setCart }) => {
+import { Grid } from '@material-ui/core';
 
-    const [products, setProducts] = useState([]);
+import useStyles from './styles';
 
-    const fetchProducts = async () => {
-        const {data} = await commerce.products.list();    
-        setProducts(data);
-      }
+export const Products = ({ products, onAddToCart }) => {
 
-    useEffect(() => {
-        fetchProducts();
-    },[])
-
+    const classes = useStyles();
     return (
-        <div className={styles.products}>
-            {/* {items > 0 && <Cart items={items} />} */}
-            {products.map(bike => <Product 
-                                    setItems={setItems} 
-                                    items={items}
-                                    cart={cart}
-                                    setCart={setCart}
-                                    bike={bike} 
-                                    key={bike.id}
-                                />)}
-        </div>
+        <main className={classes.content}>
+            <div className={classes.toolbar} />
+            <Grid container justifyContent="center" spacing={4}>
+                {products.map(product => (
+                    <Grid container justifyContent="center" item key={product.id} xs={12} sm={6} md={4} lg={3}>
+                        <Product bike={product} onAddToCart={() => onAddToCart(product.id)} />
+                    </Grid>
+                ))}
+            </Grid>
+        </main>
     );
 }
+
+export default Products;

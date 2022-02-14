@@ -1,16 +1,11 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export default makeStyles((theme) => {
-    console.log(theme);
-    return {
+export default makeStyles((theme) => ({
     root: {
         // maxWidth: 345, original width style
         width: '80%',
         height: '400px',
-        marginTop: '100px',
-        [theme.breakpoints.up('md')]: {
-            width: '30%',
-          },
+        marginTop: '50px',
 
     },
     media: {
@@ -26,4 +21,4 @@ export default makeStyles((theme) => {
         display: 'flex',
         justifyContent: 'space-between',
     },
-}});
+}));

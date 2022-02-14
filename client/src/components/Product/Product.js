@@ -1,9 +1,6 @@
-import { useRef } from 'react'
-import styles from './Product.module.scss';
+import { useRef } from 'react';
 import { Card, CardMedia, CardContent, CardActions, Typography, IconButton } from '@material-ui/core';
 import { AddShoppingCart } from '@material-ui/icons';
-import { Icon } from '@iconify/react';
-import shoppingCartOutlined from '@iconify-icons/ant-design/shopping-cart-outlined';
 
 import useStyles from './styles';
 

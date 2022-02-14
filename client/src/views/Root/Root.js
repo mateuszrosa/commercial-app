@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {commerce} from '../../lib/commerce';
 import {Header} from "../../components/Header/Header";
 import {Main} from '../Main/Main';
 import {Form} from '../Form/Form';
@@ -14,8 +15,30 @@ import './index.css';
 export const Root = () => {
 
   const [open, setOpen] = useState(false);
-  const [items, setItems] = useState(0);
   const [cart, setCart] = useState([]);
+  const [products, setProducts] = useState([]);
+
+  const fetchProducts = async () => {
+    const {data} = await commerce.products.list();
+    setProducts(data);
+  }
+
+  const fetchCart = async () => {
+    const cart = await commerce.cart.retrieve();
+    setCart(cart);
+  }
+
+  const handleAddToCart = async (productId, quantity) => {
+    const item = await commerce.cart.add(productId, quantity);
+    setCart(item.cart);
+  }
+
+
+
+  useEffect(() => {
+    fetchProducts();
+    fetchCart();
+  }, []);
 
   let hasAccount = true;
 
@@ -29,10 +52,10 @@ export const Root = () => {
           <Main />
         </Route>
         <Route exact path="/products">
-          <Products items={items} setItems={setItems} cart={cart} setCart={setCart} />
+          <Products products={products} onAddToCart={handleAddToCart} />
         </Route>
         <Route exact path="/cart">
-          <Cart items={items} setItems={setItems} cart={cart} setCart={setCart} />
+          <Cart cart={cart} setCart={setCart} />
         </Route>
         <Route exact path="/form">
           <Form cart={cart} />
