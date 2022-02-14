@@ -19,7 +19,11 @@ export const Cart = ({ cart, handleUpdateCart, handleRemoveFromCart, handleEmpty
             <Grid container spacing={3}>
                 {cart.line_items.map(item => (
                     <Grid item xs={12} sm={4} key={item.id}>
-                        <CartItem item={item} />
+                        <CartItem 
+                            item={item}
+                            handleUpdateCart={handleUpdateCart}
+                            handleRemoveFromCart={handleRemoveFromCart}
+                        />
                     </Grid>
                 ))}
                 <div className={classes.cardDetails}>

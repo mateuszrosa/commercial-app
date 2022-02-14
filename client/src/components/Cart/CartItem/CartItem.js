@@ -2,8 +2,10 @@ import {Typography, Button, Card, CardActions, CardContent, CardMedia} from '@ma
 
 import useStyles from './styles.js';
 
-const CartItem = ({item}) => {
+const CartItem = ({item,handleUpdateCart, handleRemoveFromCart}) => {
     const classes = useStyles();
+
+    console.log(item);
 
     return ( 
         <Card>
@@ -18,7 +20,12 @@ const CartItem = ({item}) => {
                     <Typography>{item.quanity}</Typography>
                     <Button type="button" size="small">+</Button>
                 </div>
-                <Button variant="contained" type="button" color="secondary">Remove</Button>
+                <Button 
+                    onClick={() => handleRemoveFromCart(item.id)}
+                    variant="contained" 
+                    type="button" 
+                    color="secondary"
+                >Remove</Button>
             </CardActions>
 
         </Card>

@@ -27,15 +27,26 @@ export const Root = () => {
     setCart(cart);
   }
 
-  const handleAddToCart = async (productId, quantity) => {
-    const item = await commerce.cart.add(productId, quantity);
-    setCart(item.cart);
+  const handleAddToCart = async (productId, quanity) => {
+    const {cart} = await commerce.cart.add(productId, quanity);
+    setCart(cart);
+  }  
+
+  const handleUpdateToCartQty = async (productId, quanity) => {
+    const {cart} = await commerce.cart.update(productId, quanity);
+    setCart(cart);
+  }
+
+  const handleRemoveFromCart = async (productId) => {
+    const {cart} = await commerce.cart.remove(productId);
+    setCart(cart);
   }
 
   const handleEmptyCart = async () => {
-    const response = await commerce.cart.empty();
-    setCart(response.cart);
+    const {cart} = await commerce.cart.empty();
+    setCart(cart);
 };
+
 
 
 
@@ -59,7 +70,12 @@ export const Root = () => {
           <Products products={products} onAddToCart={handleAddToCart} totalItems={cart.total_items} />
         </Route>
         <Route exact path="/cart">
-          <Cart cart={cart} setCart={setCart} handleEmptyCart={handleEmptyCart} />
+          <Cart 
+            cart={cart} 
+            setCart={setCart}
+            handleUpdateToCartQty={handleUpdateToCartQty}
+            handleRemoveFromCart={handleRemoveFromCart}
+            handleEmptyCart={handleEmptyCart} />
         </Route>
         <Route exact path="/login">
           <Userpage hasAccount={hasAccount} />
