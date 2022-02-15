@@ -7,6 +7,7 @@ import {Menu} from '../../components/Menu/Menu';
 import {Products} from '../../components/Products/Products';
 import {Cart} from '../../components/Cart/Cart';
 import {Userpage} from '../Userpage/Userpage';
+import {Checkout} from '../../components/CheckoutForm/Checkout/Checkout';
 import { Provider } from "react-redux";
 import {store} from '../../store';
 import './index.css';
@@ -82,6 +83,9 @@ export const Root = () => {
         </Route>
         <Route exact path="/register">
           <Userpage hasAccount={!hasAccount} />
+        </Route>
+        <Route exact path="/checkout">
+          <Checkout/>
         </Route>
       </Switch>
     </Router>
