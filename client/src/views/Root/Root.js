@@ -48,9 +48,6 @@ export const Root = () => {
     setCart(cart);
 };
 
-
-
-
   useEffect(() => {
     fetchProducts();
     fetchCart();
@@ -85,7 +82,7 @@ export const Root = () => {
           <Userpage hasAccount={!hasAccount} />
         </Route>
         <Route exact path="/checkout">
-          <Checkout/>
+          <Checkout cart={cart} />
         </Route>
       </Switch>
     </Router>
