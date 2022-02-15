@@ -26,6 +26,16 @@ export const Checkout = ({cart}) => {
         generateToken();
     }, [cart]);
 
+    const nextStep = () => setActiveStep(prevActiceStep => prevActiceStep + 1);
+
+    const backStep = () => setActiveStep(prevActiceStep => prevActiceStep -1);
+
+    const next = (data) => {
+        setShippingData(data);
+
+        nextStep();
+    }
+
 
     const Confirmation = () => (
         <div>
@@ -34,7 +44,7 @@ export const Checkout = ({cart}) => {
     );
 
     const Form = () => activeStep === 0
-        ? <AddressForm checkoutToken={checkoutToken} />
+        ? <AddressForm checkoutToken={checkoutToken} next={next} />
         : <PaymentForm />;
 
     return ( 
