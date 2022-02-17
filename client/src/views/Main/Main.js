@@ -21,7 +21,7 @@ export const Main = () => {
                     : 
                     <>
                         <h1>Welcome!</h1>
-                        <p>We are one of the beast bike shop online</p>
+                        <p>We are one of the best bike shop online</p>
                     </>
                 }
             </div>

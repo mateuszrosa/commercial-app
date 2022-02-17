@@ -18,8 +18,7 @@ export const Root = () => {
   const [cart, setCart] = useState([]);
   const [products, setProducts] = useState([]);
   const [order, setOrder] = useState({});
-  const [errorMessage, setErrorMessage] = useState('')
-
+  const [errorMessage, setErrorMessage] = useState('');
   const fetchProducts = async () => {
     const {data} = await commerce.products.list();
     setProducts(data);
@@ -58,14 +57,17 @@ const refreshCart = async () => {
 
 const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
   try {
-    const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder);
-    setOrder(incomingOrder);
-    refreshCart()
+      const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder);
 
-  } catch(error) {
-    setErrorMessage(error.data.error.message);
+      console.log(incomingOrder);
+      setOrder(incomingOrder);
+
+      refreshCart();
+  } catch (error) {
+      console.log(error);
+      setErrorMessage(error.data.error.message);
   }
-}
+};
 
   useEffect(() => {
     fetchProducts();
