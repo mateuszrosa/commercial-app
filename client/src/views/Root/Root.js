@@ -16,48 +16,53 @@ export const Root = () => {
 
   const [open, setOpen] = useState(false);
   const [cart, setCart] = useState([]);
-  const [products, setProducts] = useState([]);
+  const [bikes, setBikes] = useState([]);
+  const [helmets, setHelmets] = useState([]);
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
-  const fetchProducts = async () => {
-    const {data} = await commerce.products.list();
-    setProducts(data);
+
+  const fetchBikes = async () => {
+    const {data} = await commerce.products.list({
+      category_slug: ['bikes']
+    });
+    setBikes(data);
+  }
+
+  const fetchHelmets = async () => {
+    const {data} = await commerce.products.list({
+      category_slug: ['helmets']
+    });
+    setHelmets(data);
   }
 
   const fetchCart = async () => {
     const cart = await commerce.cart.retrieve();
-    console.log('fetchCart');
     setCart(cart);
   }
 
   const handleAddToCart = async (productId, quantity) => {
     const {cart} = await commerce.cart.add(productId, quantity);
-    console.log('handleAddToCart');
     setCart(cart);
   }  
 
   const handleUpdateToCartQty = async (productId, quantity) => {
     const {cart} = await commerce.cart.update(productId, {quantity});
-    console.log('handleUpdateToCartQty');
     setCart(cart);
   }
 
   const handleRemoveFromCart = async (productId) => {
     const {cart} = await commerce.cart.remove(productId);
-    console.log(handleRemoveFromCart)
     setCart(cart);
   }
 
   const handleEmptyCart = async () => {
     const {cart} = await commerce.cart.empty();
-    console.log(handleEmptyCart);
     setCart(cart);
 };
 
 const refreshCart = async () => {
   const newCart = await commerce.cart.refresh();
   setCart(newCart);
-  console.log('refresh');
 }
 
 const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
@@ -76,7 +81,8 @@ const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
 };
 
   useEffect(() => {
-    fetchProducts();
+    fetchBikes();
+    fetchHelmets();
     fetchCart();
   }, []);
 
@@ -91,8 +97,14 @@ const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
         <Route exact path="/">
           <Main />
         </Route>
-        <Route exact path="/products">
-          <Products products={products} onAddToCart={handleAddToCart} totalItems={cart.total_items} />
+        {/* <Route exact path="/products">
+          <Products products={} onAddToCart={handleAddToCart} totalItems={cart.total_items} />
+        </Route> */}
+        <Route exact path="/bikes">
+          <Products products={bikes} onAddToCart={handleAddToCart} totalItems={cart.total_items} />
+        </Route>
+        <Route exact path="/helmets">
+          <Products products={helmets} onAddToCart={handleAddToCart} totalItems={cart.total_items} />
         </Route>
         <Route exact path="/cart">
           <Cart 

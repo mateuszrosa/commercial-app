@@ -10,7 +10,10 @@ export const Menu = ({open, setClose}) => {
                 <Icon onClick={() => setClose(!open)} icon={closeIcon} width="90px" />
             </div>
             <div className={styles.menuLi}>
-                <NavLink onClick={() => setClose(!open)} to="products">products</NavLink>
+                <NavLink onClick={() => setClose(!open)} to="bikes">bikes</NavLink>
+            </div>
+            <div className={styles.menuLi}>
+                <NavLink onClick={() => setClose(!open)} to="helmets">helmets</NavLink>
             </div>
             <div className={styles.menuLi}>
                 <NavLink onClick={() => setClose(!open)} to="cart">cart</NavLink>
