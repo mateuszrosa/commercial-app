@@ -26,39 +26,45 @@ export const Root = () => {
 
   const fetchCart = async () => {
     const cart = await commerce.cart.retrieve();
+    console.log('fetchCart');
     setCart(cart);
   }
 
   const handleAddToCart = async (productId, quantity) => {
     const {cart} = await commerce.cart.add(productId, quantity);
+    console.log('handleAddToCart');
     setCart(cart);
   }  
 
   const handleUpdateToCartQty = async (productId, quantity) => {
     const {cart} = await commerce.cart.update(productId, {quantity});
+    console.log('handleUpdateToCartQty');
     setCart(cart);
   }
 
   const handleRemoveFromCart = async (productId) => {
     const {cart} = await commerce.cart.remove(productId);
+    console.log(handleRemoveFromCart)
     setCart(cart);
   }
 
   const handleEmptyCart = async () => {
     const {cart} = await commerce.cart.empty();
+    console.log(handleEmptyCart);
     setCart(cart);
 };
 
 const refreshCart = async () => {
   const newCart = await commerce.cart.refresh();
-
   setCart(newCart);
+  console.log('refresh');
 }
 
 const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
   try {
       const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder);
 
+      console.log('done');
       console.log(incomingOrder);
       setOrder(incomingOrder);
 

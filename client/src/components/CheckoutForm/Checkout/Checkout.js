@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import {commerce} from '../../../lib/commerce';
-import {Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button} from '@material-ui/core';
+import {Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button, CssBaseline} from '@material-ui/core';
 import useStyles from './styles.js';
 import {AddressForm} from '../AddressForm';
 import {PaymentForm} from '../PaymentForm';
@@ -14,16 +14,16 @@ export const Checkout = ({cart, order, onCaptureCheckout, error}) => {
     const [shippingData, setShippingData] = useState({});
     const [isFinished, setIsFinished] = useState(false);
     const classes = useStyles();
+    const history = useHistory();
 
     useEffect(() => {
       if(cart.id) {
         const generateToken = async () => {
             try {
-                console.log(cart.id)
                 const token = await commerce.checkout.generateToken(cart.id, { type: 'cart' });
                 setCheckoutToken(token);
             } catch (error) {
-                console.log(error);
+                history.push('/')
             }
         }
         generateToken();
@@ -92,6 +92,7 @@ export const Checkout = ({cart, order, onCaptureCheckout, error}) => {
 
     return ( 
         <>
+        <CssBaseline />
             <div className={classes.toolbar}>
                 <main className={classes.layout}>
                     <Paper className={classes.paper}>

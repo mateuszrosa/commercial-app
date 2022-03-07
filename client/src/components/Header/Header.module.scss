@@ -9,6 +9,11 @@ header {
     background: linear-gradient(93.55deg, #FFC911 0%, #E3B827 0.01%, #F7BE00 105.1%);
     z-index: 1000;
 
+    @media (min-width: 1024px) {
+        justify-content: flex-start;
+        padding-left: 25px;
+    }
+
     color: #108A7D;
 
     a {
@@ -19,5 +24,9 @@ header {
 
     svg {
         cursor: pointer;
+
+        @media (min-width: 1024px) {
+            display: none;
+        }
     }
 }
