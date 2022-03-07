@@ -6,7 +6,6 @@ import {Main} from '../Main/Main';
 import {Menu} from '../../components/Menu/Menu';
 import {Products} from '../../components/Products/Products';
 import {Cart} from '../../components/Cart/Cart';
-import {Userpage} from '../Userpage/Userpage';
 import {Checkout} from '../../components/CheckoutForm/Checkout/Checkout';
 import { Provider } from "react-redux";
 import {store} from '../../store';
@@ -97,9 +96,6 @@ const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
         <Route exact path="/">
           <Main />
         </Route>
-        {/* <Route exact path="/products">
-          <Products products={} onAddToCart={handleAddToCart} totalItems={cart.total_items} />
-        </Route> */}
         <Route exact path="/bikes">
           <Products products={bikes} onAddToCart={handleAddToCart} totalItems={cart.total_items} />
         </Route>
@@ -113,12 +109,6 @@ const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
             handleUpdateToCartQty={handleUpdateToCartQty}
             handleRemoveFromCart={handleRemoveFromCart}
             handleEmptyCart={handleEmptyCart} />
-        </Route>
-        <Route exact path="/login">
-          <Userpage hasAccount={hasAccount} />
-        </Route>
-        <Route exact path="/register">
-          <Userpage hasAccount={!hasAccount} />
         </Route>
         <Route exact path="/checkout">
           <Checkout 

@@ -18,12 +18,6 @@ export const Menu = ({open, setClose}) => {
             <div className={styles.menuLi}>
                 <NavLink onClick={() => setClose(!open)} to="cart">cart</NavLink>
             </div>
-            <div className={styles.menuLi}>
-                <NavLink onClick={() => setClose(!open)} to="login">log In</NavLink>
-            </div>
-            <div className={styles.menuLi}>
-                <NavLink onClick={() => setClose(!open)} to="logout">logout</NavLink>
-            </div>
         </div>
      );
 }
