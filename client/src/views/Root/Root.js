@@ -67,11 +67,7 @@ const refreshCart = async () => {
 const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
   try {
       const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder);
-
-      console.log('done');
-      console.log(incomingOrder);
       setOrder(incomingOrder);
-
       refreshCart();
   } catch (error) {
       console.log(error);
@@ -85,11 +81,9 @@ const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
     fetchCart();
   }, []);
 
-  let hasAccount = true;
-
   return (
     <Provider store={store}>
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Header open={open} setOpen={setOpen} />
       <Menu open={open} setClose={setOpen} />
       <Switch>

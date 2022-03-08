@@ -5,11 +5,8 @@ export default makeStyles((theme) => ({
         position: 'relative',
     },
     toolbar: theme.mixins.toolbar,
-    toolbar: {
-        marginTop: '90px'
-    },
     layout: {
-        marginTop: '5%',
+        marginTop: '15%',
         width: 'auto',
         marginLeft: theme.spacing(2),
         marginRight: theme.spacing(2),
