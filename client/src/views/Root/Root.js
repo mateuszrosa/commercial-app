@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import {commerce} from '../../lib/commerce';
 import {Header} from "../../components/Header/Header";
 import {Main} from '../Main/Main';
+import {Userpage} from '../Userpage/Userpage';
 import {Menu} from '../../components/Menu/Menu';
 import {Products} from '../../components/Products/Products';
 import {Cart} from '../../components/Cart/Cart';
@@ -111,6 +112,9 @@ const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
             onCaptureCheckout={handleCaptureCheckout} 
             error={errorMessage}
           />
+        </Route>
+        <Route exact path="/login">
+          <Userpage />
         </Route>
       </Switch>
     </Router>
