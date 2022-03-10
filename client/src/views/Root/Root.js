@@ -91,10 +91,10 @@ const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
           <Main />
         </Route>
         <Route exact path="/bikes">
-          <Products products={bikes} onAddToCart={handleAddToCart} totalItems={cart.total_items} />
+          <Products products={bikes} setProducts={setBikes} onAddToCart={handleAddToCart} totalItems={cart.total_items} />
         </Route>
         <Route exact path="/helmets">
-          <Products products={helmets} onAddToCart={handleAddToCart} totalItems={cart.total_items} />
+          <Products products={helmets} setProducts={setHelmets} onAddToCart={handleAddToCart} totalItems={cart.total_items} />
         </Route>
         <Route exact path="/cart">
           <Cart 

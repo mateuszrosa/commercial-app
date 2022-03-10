@@ -6,13 +6,30 @@ export default makeStyles((theme) => ({
         flexGrow: 1,
         backgroundColor: theme.palette.background.default,
         padding: theme.spacing(3),
+        marginTop: '90px',
+        
     },
     root: {
         flexGrow: 1,
     },
+    buttons: {
+        height: '30px',
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        paddingRight: '20px',
+    },
+    sortBtns: {
+        display: 'flex',
+        flexDirection: 'column'
+    },
     button: {
-        position: 'fixed',
-        top: '100px',
-        right: '10px'
+        marginLeft: '10px'
+    },
+    sort: {
+        fontSize: '2rem',
+        padding: 0,
     }
 }))

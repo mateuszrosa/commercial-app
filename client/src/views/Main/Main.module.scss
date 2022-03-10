@@ -15,5 +15,15 @@
         top: 20%;
         transform: translate(-50%, -50%);
         color: #3D605C;
+
+        @media (min-width: 1024px) {
+            h1 {
+                font-size: 65px;
+            }
+
+            p {
+                font-size: 40px;
+            }
+        }
     }
 }
