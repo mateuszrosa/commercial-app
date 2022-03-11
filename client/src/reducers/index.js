@@ -4,9 +4,6 @@ import {LOGIN_FAILURE} from '../actions';
 import {REGISTER_REQUEST} from '../actions';
 import {REGISTER_SUCCESS} from '../actions';
 import {REGISTER_FAILURE} from '../actions';
-import {FETCH_BIKES_REQUEST} from '../actions';
-import {FETCH_BIKES_SUCCESS} from '../actions';
-import {FETCH_BIKES_FAILURE} from '../actions';
 
 const initialState = {
     bikes: [],
@@ -51,18 +48,6 @@ export const rootReducer = (state = initialState, action) => {
                 ...state,
                 error: action.error
             }
-        }
-        case FETCH_BIKES_REQUEST: {
-            return state;
-        }
-        case FETCH_BIKES_SUCCESS: {
-            return {
-                ...state,
-                bikes: action.payload.data
-            }
-        }
-        case FETCH_BIKES_FAILURE: {
-            return state;
         }
             default:
         return state;
