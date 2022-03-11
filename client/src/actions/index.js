@@ -9,7 +9,8 @@ export const REGISTER_FAILURE = 'REGISTER_FAILURE';
 
 const axios = require('axios');
 
-export const login = (login, password) => dispatch => {
+export const login = ({login, password}) => dispatch => {
+  console.log(login, password);
     const params = new URLSearchParams({
         login,
         password,
@@ -29,7 +30,7 @@ export const register = (data) => dispatch => {
   const date = new Date();
   dispatch({ type: REGISTER_REQUEST });
   return axios
-    .post(`http://localhost:3500/user/register/?`, data)
+    .post(`http://localhost:3500/user/register/?`, {...data, date})
     .then((payload) => {
       dispatch({ type: REGISTER_SUCCESS, payload });
     })
