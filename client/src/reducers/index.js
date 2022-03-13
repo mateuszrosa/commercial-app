@@ -1,6 +1,7 @@
 import {LOGIN_REQUEST} from '../actions';
 import {LOGIN_SUCCESS} from '../actions';
 import {LOGIN_FAILURE} from '../actions';
+import {LOGOUT} from '../actions';
 import {REGISTER_REQUEST} from '../actions';
 import {REGISTER_SUCCESS} from '../actions';
 import {REGISTER_FAILURE} from '../actions';
@@ -29,6 +30,10 @@ export const rootReducer = (state = initialState, action) => {
                 ...state,
                 error: action.error
             }
+        }
+        case LOGOUT: {
+            state.user = {};
+            return { ...state };
         }
         case REGISTER_REQUEST: {
             return state;

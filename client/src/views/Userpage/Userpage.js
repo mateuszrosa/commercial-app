@@ -16,18 +16,11 @@ export const Userpage = ({hasAccount}) => {
     }));
 
     const submit = (data) => {
+        console.log(data);
         hasAccount ? 
             dispatch(login(data))
             :
             dispatch(register(data));
-            // if(hasAccount) {
-            //     username.current.value = "";
-            //     password.current.value = "";
-            // } else {
-            //     username.current.value = "";
-            //     password.current.value = "";
-            //     email.current.value = ""
-            // }
     }
 
     if(userId) {
