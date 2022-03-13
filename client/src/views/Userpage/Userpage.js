@@ -36,17 +36,20 @@ export const Userpage = ({hasAccount}) => {
 
     const Login = () => (
         <>
-            <Typography variant="h6" gutterBottom></Typography>
-            <FormProvider {...methods}>
-                <form onSubmit={methods.handleSubmit((data) => submit(data))}>
-                    <Grid container spacing={3}>
-                        <FormInput name="login" label="Login" />
-                        <FormInput name="password" label="Password" />
-                        <Button type="submit" variant="contained" color="primary">Login</Button>
-                    </Grid>
-                </form>
-            </FormProvider>
-        </>
+        <Typography variant="h6" gutterBottom>Log In</Typography>
+        <FormProvider {...methods}>
+        <form onSubmit={methods.handleSubmit((data) => submit(data))}>
+            <Grid container justifyContent='space-around' spacing={2}>
+                <FormInput name="login" label="Login" />
+                <FormInput name="password" label="Password" type="password" />
+                <Button type="submit" variant="contained" color="primary">Log In</Button>
+                <Button type="submit" variant="contained" color="secondary">
+                    <Link to="register">I want my account</Link>    
+                </Button>
+            </Grid>
+        </form>
+        </FormProvider>
+    </>
     )
 
     const Register = () => (
@@ -54,7 +57,7 @@ export const Userpage = ({hasAccount}) => {
             <Typography variant="h6" gutterBottom></Typography>
             <FormProvider {...methods}>
             <form onSubmit={methods.handleSubmit((data) => submit(data))}>
-                <Grid container spacing={3}>
+                <Grid container justifyContent='space-around' spacing={3}>
                     <FormInput name="login" label="Login" />
                     <FormInput name="password" label="Password" type="password" />
                     <FormInput name="firstName" label="First name" />
@@ -65,7 +68,9 @@ export const Userpage = ({hasAccount}) => {
                     <FormInput name="zip" label="ZIP/Postal Code" />
                     <FormInput name="country" label="Country" />
                     <FormInput name="subdivision" label="Region" />
-                    <Button type="submit" variant="contained" color="primary">Register</Button>
+                    <Button type="submit" variant="contained" color="primary">Register</Button><Button type="submit" variant="contained" color="secondary">
+                        <Link to="login">I have my account</Link>    
+                    </Button>
                 </Grid>
             </form>
             </FormProvider>
