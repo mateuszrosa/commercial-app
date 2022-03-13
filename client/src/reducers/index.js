@@ -17,6 +17,7 @@ export const rootReducer = (state = initialState, action) => {
             return state;
         }
         case LOGIN_SUCCESS: {
+            console.log(action.payload.data);
             return {
                 ...state,
                 user: {
