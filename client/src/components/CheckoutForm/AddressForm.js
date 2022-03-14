@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {commerce} from '../../lib/commerce';
 import {InputLabel, Select, MenuItem, Button, Grid, Typography} from '@material-ui/core';
@@ -7,6 +8,10 @@ import {useForm,FormProvider} from 'react-hook-form';
 import {FormInput} from './CustomTextField';
 
 export const AddressForm = ({checkoutToken, next}) => {
+
+    const {user} = useSelector(({ user }) => ({
+        user
+      }));
 
   const [shippingCountries, setShippingCountries] = useState([]);
   const [shippingCountry, setShippingCountry] = useState('')
@@ -59,12 +64,12 @@ export const AddressForm = ({checkoutToken, next}) => {
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit((data) => next({...data, shippingCountry, shippingSubdivision, shippingOption}))}>
           <Grid container spacing={3}>
-          <FormInput name="firstName" label="First name" />
-          <FormInput name="laststName" label="Last name" />
-          <FormInput name="address1" label="Address" />
-          <FormInput name="email" label="Email" />
-          <FormInput name="City" label="City" />
-          <FormInput name="zip" label="ZIP/Postal Code" />
+          <FormInput name="firstName" label="First name" value={user.firstName}/>
+          <FormInput name="lastName" label="Last name" value={user.lastName} />
+          <FormInput name="address1" label="Address" value={user.address1} />
+          <FormInput name="email" label="Email" value={user.email} />
+          <FormInput name="City" label="City" value={user.city} />
+          <FormInput name="zip" label="ZIP/Postal Code" value={user.zip} />
           <Grid item xs={12} sm={6}>
                             <InputLabel>Shipping Country</InputLabel>
                             <Select value={shippingCountry} fullWidth onChange={(e) => setShippingCountry(e.target.value)}>
