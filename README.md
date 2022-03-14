@@ -23,5 +23,5 @@
     <li>Run project</li>
     <p>run <code>npm start</code></p>
     <li>Open it</li>
-    <p>go to <a href="http://localhost:3500">http://localhost:3500</a></p>
+    <p>go to <a href="http://localhost:3000">http://localhost:3000</a></p>
 </ol>

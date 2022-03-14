@@ -6,7 +6,9 @@ import {login, register} from '../../actions';
 import styles from './Userpage.module.scss';
 import {FormInput} from '../../components/CheckoutForm/CustomTextField';
 
-export const Userpage = ({hasAccount}) => {
+export const Register = ({hasAccount}) => {
+
+    console.log('render')
 
     const dispatch = useDispatch();
     const methods = useForm();
@@ -27,27 +29,10 @@ export const Userpage = ({hasAccount}) => {
         return <Redirect to="/" />;
     };
 
-    const Login = () => (
-        <>
-        <Typography variant="h6" gutterBottom>Log In</Typography>
-        <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit((data) => submit(data))}>
-            <Grid container justifyContent='space-around' spacing={2}>
-                <FormInput name="login" label="Login" />
-                <FormInput name="password" label="Password" type="password" />
-                <Button type="submit" variant="contained" color="primary">Log In</Button>
-                <Button type="submit" variant="contained" color="secondary">
-                    <Link to="register">I want my account</Link>    
-                </Button>
-            </Grid>
-        </form>
-        </FormProvider>
-    </>
-    )
-
-    const Register = () => (
-        <>
-            <Typography variant="h6" gutterBottom></Typography>
+    return ( 
+        <div className={styles.userpage}>
+            <div className={styles.container}>
+            <Typography variant="h6" gutterBottom>Register</Typography>
             <FormProvider {...methods}>
             <form onSubmit={methods.handleSubmit((data) => submit(data))}>
                 <Grid container justifyContent='space-around' spacing={3}>
@@ -67,13 +52,6 @@ export const Userpage = ({hasAccount}) => {
                 </Grid>
             </form>
             </FormProvider>
-        </>
-    );
-
-    return ( 
-        <div className={styles.userpage}>
-            <div className={styles.container}>
-                {hasAccount ? <Login /> : <Register /> }
             </div>
         </div>
      );

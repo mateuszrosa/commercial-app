@@ -7,10 +7,10 @@ export const user = {
         if (!user) {
             return res.status(404).json({ "message": "Wrong login!" });
         }
-        // const isPasswordValid = user.comparePassword(req.query.password);
-        // if (!isPasswordValid) {
-        //     return res.status(404).json({ "message": "Wrong password!" });
-        // }
+        const isPasswordValid = user.comparePassword(req.query.password);
+        if (!isPasswordValid) {
+            return res.status(404).json({ "message": "Wrong password!" });
+        }
         console.log('Logged In!');
         user.password = undefined;
         res.json(user);
