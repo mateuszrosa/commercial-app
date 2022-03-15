@@ -17,7 +17,6 @@ export const rootReducer = (state = initialState, action) => {
             return state;
         }
         case LOGIN_SUCCESS: {
-            console.log(action.payload.data);
             return {
                 ...state,
                 user: {
@@ -44,8 +43,7 @@ export const rootReducer = (state = initialState, action) => {
                 ...state,
                 user: {
                     userId: action.payload.data._id,
-                    login: action.payload.data.login,
-                    date: action.payload.data.date,
+                    ...action.payload.data
                 }
             }
         }

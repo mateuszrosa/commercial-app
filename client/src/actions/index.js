@@ -16,9 +16,8 @@ export const login = ({login, password}) => dispatch => {
       });
       dispatch({ type: LOGIN_REQUEST });
   return axios
-    .get(`http://localhost:3500/user/login/?${params}`)
+    .get(`https://commercial-app1.herokuapp.com/user/login/?${params}`)
     .then((payload) => {
-      console.log(payload);
       return dispatch({ type: LOGIN_SUCCESS, payload });
     })
     .catch(({ response }) => {
@@ -32,10 +31,10 @@ export const logout = () => (dispatch) => {
 };
 
 export const register = (data) => dispatch => {
-  const date = new Date();
+  const date = getDate(new Date());
   dispatch({ type: REGISTER_REQUEST });
   return axios
-    .post(`http://localhost:3500/user/register/?`, {...data, date})
+    .post(`https://commercial-app1.herokuapp.com/user/register/?`, {...data, date})
     .then((payload) => {
       dispatch({ type: REGISTER_SUCCESS, payload });
     })

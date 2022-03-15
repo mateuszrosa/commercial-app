@@ -15,8 +15,6 @@ import './index.css';
 
 export const Root = () => {
 
-  const hasAccount = true;
-
   const [open, setOpen] = useState(false);
   const [cart, setCart] = useState([]);
   const [bikes, setBikes] = useState([]);
@@ -117,10 +115,10 @@ const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
           />
         </Route>
         <Route exact path="/login">
-          <Login hasAccount={hasAccount} />
+          <Login />
         </Route>
         <Route exact path="/register">
-          <Register hasAccount={!hasAccount} />
+          <Register />
         </Route>
       </Switch>
     </Router>

@@ -16,12 +16,11 @@ export const user = {
         res.json(user);
     },
     register: async (req,res) => {
-        console.log(req.body);
         const user = new User(req.body);
         try {
-            const newUser = user.save();
+            const newUser = await user.save();
             res.json(newUser);
-            console.log('Registerd new Account');
+            console.log('Registered new Account');
         } catch(e) {
             return res.status(404).json(e.errors);
         }

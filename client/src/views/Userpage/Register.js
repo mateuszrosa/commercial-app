@@ -2,13 +2,11 @@ import {Button, Grid, Typography} from '@material-ui/core';
 import {useForm,FormProvider} from 'react-hook-form';
 import { Link, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import {login, register} from '../../actions';
+import {register} from '../../actions';
 import styles from './Userpage.module.scss';
 import {FormInput} from '../../components/CheckoutForm/CustomTextField';
 
-export const Register = ({hasAccount}) => {
-
-    console.log('render')
+export const Register = () => {
 
     const dispatch = useDispatch();
     const methods = useForm();
@@ -18,11 +16,7 @@ export const Register = ({hasAccount}) => {
     }));
 
     const submit = (data) => {
-        console.log(data);
-        hasAccount ? 
-            dispatch(login(data))
-            :
-            dispatch(register(data));
+        dispatch(register(data));
     }
 
     if(userId) {
@@ -32,7 +26,7 @@ export const Register = ({hasAccount}) => {
     return ( 
         <div className={styles.userpage}>
             <div className={styles.container}>
-            <Typography variant="h6" gutterBottom>Register</Typography>
+            <Typography variant="h3" gutterBottom>Register</Typography>
             <FormProvider {...methods}>
             <form onSubmit={methods.handleSubmit((data) => submit(data))}>
                 <Grid container justifyContent='space-around' spacing={3}>
