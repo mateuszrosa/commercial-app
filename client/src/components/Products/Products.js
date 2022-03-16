@@ -18,9 +18,9 @@ export const Products = ({ products, setProducts, onAddToCart, totalItems }) => 
             }
 
             if (order === 'asc') {
-                return a.price.formatted - b.price.formatted
+                return Number(a.price.formatted.replace(/,/g,'')) - Number(b.price.formatted.replace(/,/g,''))
             } else {
-                return b.price.formatted - a.price.formatted
+                return Number(b.price.formatted.replace(/,/g,'')) - Number(a.price.formatted.replace(/,/g,''))
             }
         }
     }
