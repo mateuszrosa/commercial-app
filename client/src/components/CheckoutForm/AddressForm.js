@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {commerce} from '../../lib/commerce';
-import {InputLabel, Select, MenuItem, Button, Grid, Typography} from '@material-ui/core';
+import {InputLabel, Select, MenuItem, Button, Grid, Typography} from '@mui/material';
 import {useForm,FormProvider} from 'react-hook-form';
 
 import {FormInput} from './CustomTextField';
 
-export const AddressForm = ({checkoutToken, next}) => {
+export const AddressForm = ({checkoutToken = '', next, account}) => {
 
     const {user} = useSelector(({ user }) => ({
         user
@@ -27,7 +27,6 @@ export const AddressForm = ({checkoutToken, next}) => {
 
     const fetchShippingCountries = async (checkoutTokenId) => {
         const { countries } = await commerce.services.localeListShippingCountries(checkoutTokenId);
-
         setShippingCountries(countries);
         setShippingCountry(Object.keys(countries)[0])
     }
@@ -45,8 +44,9 @@ export const AddressForm = ({checkoutToken, next}) => {
     }
 
     useEffect(() => {
+        if(account) return;
         fetchShippingCountries(checkoutToken.id);
-    }, [checkoutToken.id])
+    }, [checkoutToken.id, account])
 
     useEffect(() => {
         if (shippingCountry) fetchSubdivisions(shippingCountry);
@@ -68,7 +68,7 @@ export const AddressForm = ({checkoutToken, next}) => {
           <FormInput name="email" label="Email" value={user.email} />
           <FormInput name="City" label="City" value={user.city} />
           <FormInput name="zip" label="ZIP/Postal Code" value={user.zip} />
-          <Grid item xs={12} sm={6}>
+                       {!account && <><Grid item xs={12} sm={6}>
                             <InputLabel>Shipping Country</InputLabel>
                             <Select value={shippingCountry} fullWidth onChange={(e) => setShippingCountry(e.target.value)}>
                                 {countries.map((country) => (
@@ -93,12 +93,12 @@ export const AddressForm = ({checkoutToken, next}) => {
                                 )
                                 )}
                             </Select>
-                        </Grid>
+                        </Grid></>}
           </Grid>
           <br />
           <div style={{display: 'flex', justifyContent: 'space-between'}}>
-            <Button component={Link} to="/cart" variant="outlined">Back to Cart</Button>
-            <Button type="submit" variant="contained" color="primary">Next</Button>
+            {!account && <Button component={Link} to="/cart" variant="outlined">Back to Cart</Button>}
+            <Button type="submit" variant="contained" color="primary">{account ? 'Save' : 'Next'}</Button>
           </div>
         </form>
       </FormProvider>
