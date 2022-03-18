@@ -1,19 +1,22 @@
 import {useState} from 'react';
-import {AddressForm} from '../../components/CheckoutForm/AddressForm';
-import {Box, Tab} from '@mui/material';
+import {useSelector} from 'react-redux';
+import {Box, Tab, Button, Grid, Typography} from '@mui/material';
 import {TabContext, TabList, TabPanel} from '@mui/lab';
-// import Box from '@mui/material/Box';
-// import Tab from '@mui/material/Tab';
-// import TabContext from '@mui/lab/TabContext';
-// import TabList from '@mui/lab/TabList';
-// import TabPanel from '@mui/lab/TabPanel';
+import {useForm,FormProvider} from 'react-hook-form';
+import {FormInput} from '../../components/CheckoutForm/CustomTextField';
 
 export const Account = () => {
+
+  const {user} = useSelector(({ user }) => ({
+    user
+  }));
   const [value, setValue] = useState('1');
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const methods = useForm();
 
   return (
     <Box sx={{ width: '100%', typography: 'body1', marginTop: '90px' }}>
@@ -26,7 +29,23 @@ export const Account = () => {
           </TabList>
         </Box>
         <TabPanel value="1">
-            <AddressForm account />
+        <Typography variant="h6" gutterBottom></Typography>
+      <FormProvider {...methods}>
+        <form onSubmit={methods.handleSubmit((data) => console.log(data))}>
+          <Grid container spacing={3}>
+            <FormInput name="firstName" label="First name" value={user.firstName}/>
+            <FormInput name="lastName" label="Last name" value={user.lastName} />
+            <FormInput name="address1" label="Address" value={user.address1} />
+            <FormInput name="email" label="Email" value={user.email} />
+            <FormInput name="City" label="City" value={user.city} />
+            <FormInput name="zip" label="ZIP/Postal Code" value={user.zip} />
+          </Grid>
+          <br />
+          <div style={{display: 'flex', justifyContent: 'space-between'}}>
+            <Button type="submit" variant="contained" color="primary">Next</Button>
+          </div>
+        </form>
+      </FormProvider>
         </TabPanel>
         <TabPanel value="2">Item Two</TabPanel>
         <TabPanel value="3">Item Three</TabPanel>

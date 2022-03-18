@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import {commerce} from '../../../lib/commerce';
-import {Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button, CssBaseline} from '@material-ui/core';
+import {Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button, CssBaseline} from '@mui/material';
 import useStyles from './styles.js';
 import {AddressForm} from '../AddressForm';
 import {PaymentForm} from '../PaymentForm';

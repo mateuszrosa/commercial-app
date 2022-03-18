@@ -1,4 +1,4 @@
-import {Button, Grid, Typography} from '@material-ui/core';
+import {Button, Grid, Typography} from '@mui/material';
 import {useForm,FormProvider} from 'react-hook-form';
 import { Link, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';

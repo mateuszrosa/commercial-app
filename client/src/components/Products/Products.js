@@ -1,9 +1,7 @@
-import {IconButton, Badge} from '@material-ui/core';
-import { ShoppingCart, KeyboardArrowDown, KeyboardArrowUp } from '@material-ui/icons';
+import {Grid, IconButton, Badge} from '@mui/material';
+import {ShoppingCart, KeyboardArrowDown,KeyboardArrowUp } from '@mui/icons-material'
 import { Link } from 'react-router-dom';
 import {Product} from './Product/Product';
-
-import { Grid } from '@material-ui/core';
 
 import useStyles from './styles';
 

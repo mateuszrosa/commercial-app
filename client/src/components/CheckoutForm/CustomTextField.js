@@ -1,4 +1,4 @@
-import { TextField, Grid } from '@material-ui/core';
+import { TextField, Grid } from '@mui/material';
 import { useFormContext, Controller } from 'react-hook-form';
 
 export const FormInput = ({ name, label, type, value='' }) => {

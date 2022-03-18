@@ -7,7 +7,7 @@ import {useForm,FormProvider} from 'react-hook-form';
 
 import {FormInput} from './CustomTextField';
 
-export const AddressForm = ({checkoutToken = '', next, account}) => {
+export const AddressForm = ({checkoutToken = '', next}) => {
 
     const {user} = useSelector(({ user }) => ({
         user
@@ -27,6 +27,7 @@ export const AddressForm = ({checkoutToken = '', next, account}) => {
 
     const fetchShippingCountries = async (checkoutTokenId) => {
         const { countries } = await commerce.services.localeListShippingCountries(checkoutTokenId);
+
         setShippingCountries(countries);
         setShippingCountry(Object.keys(countries)[0])
     }
@@ -44,9 +45,8 @@ export const AddressForm = ({checkoutToken = '', next, account}) => {
     }
 
     useEffect(() => {
-        if(account) return;
         fetchShippingCountries(checkoutToken.id);
-    }, [checkoutToken.id, account])
+    }, [checkoutToken.id])
 
     useEffect(() => {
         if (shippingCountry) fetchSubdivisions(shippingCountry);
@@ -68,7 +68,7 @@ export const AddressForm = ({checkoutToken = '', next, account}) => {
           <FormInput name="email" label="Email" value={user.email} />
           <FormInput name="City" label="City" value={user.city} />
           <FormInput name="zip" label="ZIP/Postal Code" value={user.zip} />
-                       {!account && <><Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={6}>
                             <InputLabel>Shipping Country</InputLabel>
                             <Select value={shippingCountry} fullWidth onChange={(e) => setShippingCountry(e.target.value)}>
                                 {countries.map((country) => (
@@ -93,12 +93,12 @@ export const AddressForm = ({checkoutToken = '', next, account}) => {
                                 )
                                 )}
                             </Select>
-                        </Grid></>}
+                        </Grid>
           </Grid>
           <br />
           <div style={{display: 'flex', justifyContent: 'space-between'}}>
-            {!account && <Button component={Link} to="/cart" variant="outlined">Back to Cart</Button>}
-            <Button type="submit" variant="contained" color="primary">{account ? 'Save' : 'Next'}</Button>
+            <Button component={Link} to="/cart" variant="outlined">Back to Cart</Button>
+            <Button type="submit" variant="contained" color="primary">Next</Button>
           </div>
         </form>
       </FormProvider>
