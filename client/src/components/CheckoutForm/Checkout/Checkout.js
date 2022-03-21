@@ -2,11 +2,14 @@ import { useState, useEffect } from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import {commerce} from '../../../lib/commerce';
 import {Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button, CssBaseline} from '@mui/material';
-import useStyles from './styles.js';
+import {useStyles} from './styles.js';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {AddressForm} from '../AddressForm';
 import {PaymentForm} from '../PaymentForm';
 
 const steps = ['Shipping address', 'Payment details'];
+
+const theme = createTheme();
 
 export const Checkout = ({cart, order, onCaptureCheckout, error}) => {
     const [activeStep, setActiveStep] = useState(0);
@@ -47,7 +50,7 @@ export const Checkout = ({cart, order, onCaptureCheckout, error}) => {
 
     
     let Confirmation = () => order.customer ? (
-        <>
+        <ThemeProvider theme={theme}>
             <div>
                 <Typography variant="h5">Thank you for your purachese, {order.customer.firstname} {order.customer.lastname}</Typography>
                 <Divider className={classes.divider} />
@@ -55,16 +58,16 @@ export const Checkout = ({cart, order, onCaptureCheckout, error}) => {
             </div>
             <br />
             <Button component={Link} to="/" variant="outlined" type="button">Back to home</Button>
-        </>
+        </ThemeProvider>
     ) : isFinished ? (
-        <>
+        <ThemeProvider theme={theme}>
             <div>
                 <Typography variant="h5">Thank you for your purachese</Typography>
                 <Divider className={classes.divider} />
             </div>
             <br />
             <Button component={Link} to="/" variant="outlined" type="button">Back to home</Button>
-        </>
+        </ThemeProvider>
     ) : (
         <div className={classes.spinner}>
             <CircularProgress />
@@ -91,7 +94,7 @@ export const Checkout = ({cart, order, onCaptureCheckout, error}) => {
         />;
 
     return ( 
-        <>
+        <ThemeProvider theme={theme}>
         <CssBaseline />
             <div className={classes.toolbar}>
                 <main className={classes.layout}>
@@ -108,6 +111,6 @@ export const Checkout = ({cart, order, onCaptureCheckout, error}) => {
                     </Paper>
                 </main>
             </div>
-        </>
+        </ThemeProvider>
      );
 };
