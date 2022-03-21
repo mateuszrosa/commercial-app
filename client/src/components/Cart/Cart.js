@@ -1,14 +1,11 @@
 import { Container, Typography, Button, Grid } from '@mui/material';
 import CartItem from './CartItem/CartItem';
 import { Link } from 'react-router-dom';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import useStyles from './styles';
 
 export const Cart = ({ cart, handleUpdateToCartQty, handleRemoveFromCart, handleEmptyCart }) => {
 
     const classes = useStyles();
-    const theme = createTheme();
-
     const EmptyCart = () => (
         <Typography variant="subtitle1">You have no items in your shopping cart, start adding some!
             <Link to="/products" className={classes.link}> Start adding some</Link>
@@ -61,12 +58,10 @@ export const Cart = ({ cart, handleUpdateToCartQty, handleRemoveFromCart, handle
     }
 
     return (
-        <ThemeProvider theme={theme}>
             <Container className={classes.root}>
                 <div className={classes.toolbar} />
                 <Typography className={classes.title} variant="h3" gutterBottom>Your Shopping Cart</Typography>
                 {!cart.line_items.length ? <EmptyCart /> : <FilledCart />}
             </Container>
-        </ThemeProvider>
     );
 }

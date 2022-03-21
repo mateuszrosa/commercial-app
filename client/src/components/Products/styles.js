@@ -1,12 +1,12 @@
-import { makeStyles } from '@mui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
-export const useStyles = makeStyles (({theme}) => {
-    console.log(theme)
-return{
+export const useStyles = makeStyles ((theme) => ({
+    toolbar: theme.mixins.toolbar,
     content: {
         flexGrow: 1,
+        backgroundColor: theme.palette.background.default,
+        padding: theme.spacing(3),
         marginTop: '90px',
-        paddingTop: '20px'
         
     },
     root: {
@@ -23,13 +23,13 @@ return{
     },
     sortBtns: {
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'column'
     },
     button: {
-        marginLeft: '10px',
+        marginLeft: '10px'
     },
     sort: {
         fontSize: '2rem',
-        padding: '0',
+        padding: 0,
     }
-}})
+}));

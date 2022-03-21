@@ -2,10 +2,7 @@ import {Grid, IconButton, Badge} from '@mui/material';
 import {ShoppingCart, KeyboardArrowDown,KeyboardArrowUp } from '@mui/icons-material'
 import { Link } from 'react-router-dom';
 import {Product} from './Product/Product';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {useStyles} from './styles';
-
-const theme = createTheme();
 
 export const Products = ({ products, setProducts, onAddToCart, totalItems }) => {
 
@@ -33,7 +30,6 @@ export const Products = ({ products, setProducts, onAddToCart, totalItems }) => 
     }
 
     return (
-        <ThemeProvider theme={theme}>
             <main className={classes.content}>
                 <div className={classes.toolbar}>
                     <div className={classes.buttons}>
@@ -64,7 +60,6 @@ export const Products = ({ products, setProducts, onAddToCart, totalItems }) => 
                     ))}
                 </Grid>
             </main>
-        </ThemeProvider>
     );
 }
 
