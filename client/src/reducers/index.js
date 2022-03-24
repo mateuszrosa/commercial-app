@@ -7,7 +7,6 @@ import {REGISTER_SUCCESS} from '../actions';
 import {REGISTER_FAILURE} from '../actions';
 
 const initialState = {
-    bikes: [],
     user: {}
 };
 
@@ -28,7 +27,9 @@ export const rootReducer = (state = initialState, action) => {
         case LOGIN_FAILURE: {
             return {
                 ...state,
-                error: action.error
+                error: {
+                    ...action.error
+                }
             }
         }
         case LOGOUT: {

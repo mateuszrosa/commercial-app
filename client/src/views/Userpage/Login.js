@@ -1,8 +1,8 @@
-import {Button, Grid, Typography} from '@mui/material';
 import {useForm,FormProvider} from 'react-hook-form';
 import { Link, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import {login} from '../../actions';
+import {Button, Grid, Typography} from '@mui/material';
 import styles from './Userpage.module.scss';
 import {FormInput} from '../../components/CheckoutForm/CustomTextField';
 
@@ -11,8 +11,9 @@ export const Login = () => {
     const dispatch = useDispatch();
     const methods = useForm();
 
-    const { userId} = useSelector(({ user }) => ({
-      userId: user.userId
+    const { userId, error} = useSelector(({ user, error }) => ({
+      userId: user.userId,
+      error: error
     }));
 
     const submit = (data) => {
@@ -27,6 +28,7 @@ export const Login = () => {
         <div className={styles.userpage}>
             <div className={styles.container}>
             <Typography variant="h3" gutterBottom>Log In</Typography>
+            <Typography variant="h4" color="error.dark" gutterBottom>{error && `${error.message}`}</Typography>
             <FormProvider {...methods}>
                 <form onSubmit={methods.handleSubmit((data) => submit(data))}>
                     <Grid container justifyContent='space-around' spacing={2}>
