@@ -15,6 +15,33 @@ export const user = {
         user.password = undefined;
         res.json(user);
     },
+    editUser: async (req,res) => {
+        const {login, firstName, lastName, address1, email, city, zip, country, subdivision} = req.query;
+        try {
+            const user = await User
+                .findOneAndUpdate(
+                    {login},
+                    {$set: {
+                        "firstName": firstName,
+                        "lastName": lastName,
+                        "address1": address1,
+                        "email": email,
+                        "city": city,
+                        "zip": zip,
+                        "country": country,
+                        "subdivision": subdivision
+                    }},
+                    { returnOriginal: false, upsert: true }
+                )
+                if(!user) {
+                    res.status(404).json("Cannot find user to edit");
+                } else {
+                    res.json(user);
+                }
+        } catch (e) {
+            res.sendStatus(500)
+        }
+    },
     register: async (req,res) => {
         const user = new User(req.body);
         try {
