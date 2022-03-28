@@ -39,8 +39,6 @@ export const Account = () => {
             <FormInput name="email" label="Email" value={user.email} />
             <FormInput name="City" label="City" value={user.city} />
             <FormInput name="zip" label="ZIP/Postal Code" value={user.zip} />
-            <FormInput name="country" label="Country" value={user.country} />
-            <FormInput name="subdivision" label="Region" value={user.subdivision} />
           </Grid>
           <br />
           <div style={{display: 'flex', justifyContent: 'space-between'}}>
