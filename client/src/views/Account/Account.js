@@ -1,9 +1,9 @@
 import {useState} from 'react';
+import styles from './Account.module.scss';
 import { Redirect } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
 import {editUser} from '../../actions';
-import {Box, Tab, Button, Grid, Typography} from '@mui/material';
-import {TabContext, TabList, TabPanel} from '@mui/lab';
+import { Button, Grid, Typography} from '@mui/material';
 import {useForm,FormProvider} from 'react-hook-form';
 import {FormInput} from '../../components/CheckoutForm/CustomTextField';
 
@@ -14,13 +14,8 @@ export const Account = () => {
   const {user} = useSelector(({ user }) => ({
     user
   }));
-  const [value, setValue] = useState('1');
   const [isEdited, setIsEdited] = useState(false);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-  
   const submit = (data) => {
     dispatch(editUser(data, user.login));
     setIsEdited(true);
@@ -33,17 +28,8 @@ export const Account = () => {
 };
 
   return (
-    <Box sx={{ width: '100%', typography: 'body1', marginTop: '90px' }}>
-      <TabContext value={value}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <TabList onChange={handleChange} aria-label="lab API tabs example">
-            <Tab label="Change address" value="1" />
-            <Tab label="Item Two" value="2" />
-            <Tab label="Item Three" value="3" />
-          </TabList>
-        </Box>
-        <TabPanel value="1">
-        <Typography variant="h6" gutterBottom></Typography>
+    <div className={styles.container}>
+        <Typography variant="h6" gutterBottom>Edit account</Typography>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit((data) => submit(data))}>
           <Grid container spacing={3}>
@@ -62,10 +48,6 @@ export const Account = () => {
           </div>
         </form>
       </FormProvider>
-        </TabPanel>
-        <TabPanel value="2">Item Two</TabPanel>
-        <TabPanel value="3">Item Three</TabPanel>
-      </TabContext>
-    </Box>
+      </div>
   );
 }

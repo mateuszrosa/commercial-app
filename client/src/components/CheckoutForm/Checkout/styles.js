@@ -1,8 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export const useStyles = makeStyles((theme) => {
-    console.log(theme)
-   return { appBar: {
+export const useStyles = makeStyles((theme) => ({
+    appBar: {
         position: 'relative',
     },
     toolbar: theme.mixins.toolbar,
@@ -50,4 +49,4 @@ export const useStyles = makeStyles((theme) => {
         justifyContent: 'center',
         alignItems: 'center',
     },
-}});
+}));
