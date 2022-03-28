@@ -1,13 +1,17 @@
 .userpage {
     height: calc(100% - 90px);
-    margin-top: 90px;
+    position: absolute;
+    top: 90px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+
+    @media (min-width: 1024px) {
+        align-items: center;
+    }
 
     .container {
-        border: 1px solid black;
-        width: 75%;
+        width: 100%;
         padding: 25px;
         display: flex;
         justify-content: center;
@@ -15,30 +19,29 @@
         flex-direction: column;
         position: relative;
 
+        @media (min-width: 1024px) {
+            width: 75%;
+            height: 75%;
+        }
+
         form {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            width: 65%;
+            width: 95%;
+
+            @media (min-width: 1024px) {
+                width: 50%;
+            }
 
             label {
                 font-size: 20px;
             }
 
-            input {
-                width: 50%;
-                height: 25px;
-                font-size: 16px;
-                margin-bottom: 5px;
-
-                &[type="submit"],
-                &[type="button"] {
-                    width: 50%;
-                    height: 23px;
-                    margin-top: 10px;
-                }
+            button {
+                margin-top: 20px;
             }
 
             a {
