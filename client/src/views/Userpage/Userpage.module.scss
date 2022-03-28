@@ -7,7 +7,7 @@
     align-items: flex-start;
 
     @media (min-width: 1024px) {
-        align-items: center;
+        width: 100%;
     }
 
     .container {
@@ -33,7 +33,7 @@
             width: 95%;
 
             @media (min-width: 1024px) {
-                width: 50%;
+                width: 65%;
             }
 
             label {

@@ -14,7 +14,7 @@ export const Cart = ({ cart, handleUpdateToCartQty, handleRemoveFromCart, handle
 
     const FilledCart = () => (
         <>
-            <Grid container spacing={3}>
+            <Grid container spacing={2}>
                 {cart.line_items.map(item => (
                     <Grid item xs={12} sm={4} key={item.id}>
                         <CartItem 
