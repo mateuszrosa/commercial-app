@@ -8,6 +8,9 @@ import {LOGOUT} from '../actions';
 import {REGISTER_REQUEST} from '../actions';
 import {REGISTER_SUCCESS} from '../actions';
 import {REGISTER_FAILURE} from '../actions';
+import {ADD_ORDER_REQUEST} from '../actions';
+import {ADD_ORDER_SUCCESS} from '../actions';
+import {ADD_ORDER_FAILURE} from '../actions';
 
 const initialState = {
     user: {}
@@ -76,6 +79,21 @@ export const rootReducer = (state = initialState, action) => {
                 ...state,
                 error: action.error
             }
+        }
+        case ADD_ORDER_REQUEST: {
+            return state;
+        }
+        case ADD_ORDER_SUCCESS: {
+            return { 
+                ...state,
+                user: {
+                 userId: action.payload.data._id,
+                 ...action.payload.data
+                 }
+             }
+        }
+        case ADD_ORDER_FAILURE: {
+            return state;
         }
             default:
         return state;

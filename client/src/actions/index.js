@@ -9,6 +9,9 @@ export const LOGOUT = "LOGOUT";
 export const REGISTER_REQUEST = 'REGISTER_REQUEST';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAILURE = 'REGISTER_FAILURE';
+export const ADD_ORDER_REQUEST = 'ADD_ORDER_REQUEST';
+export const ADD_ORDER_SUCCESS = 'ADD_ORDER_SUCCESS';
+export const ADD_ORDER_FAILURE = 'ADD_ORDER_FAILURE';
 
 const axios = require('axios');
 
@@ -60,4 +63,18 @@ export const register = (data) => dispatch => {
     .catch(({ response }) => {
       dispatch({ type: REGISTER_FAILURE, error: response.data });
     });
+}
+
+export const order = (data, login) => dispatch => {
+  const params = new URLSearchParams({
+    ...data,
+    login
+  });
+  dispatch({type: ADD_ORDER_REQUEST});
+  return axios
+    .post(`http://localhost:3500/user/order/?${params}`)
+    .then((payload) => {
+      dispatch({type: ADD_ORDER_SUCCESS, payload})
+    })
+    .catch(err => console.log(err))
 }
