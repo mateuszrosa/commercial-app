@@ -55,6 +55,10 @@ const schema = new Schema({
         type: String,
         required: true,
         select: true,
+    },
+    orders: {
+        type: Array,
+        select: true
     }
 });
 

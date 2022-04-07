@@ -56,7 +56,7 @@ export const register = (data) => dispatch => {
   const date = getDate(new Date());
   dispatch({ type: REGISTER_REQUEST });
   return axios
-    .post(`https://commercial-app1.herokuapp.com/user/register/?`, {...data, date})
+    .post(`http://localhost:3500/user/register/?`, {...data, date})
     .then((payload) => {
       dispatch({ type: REGISTER_SUCCESS, payload });
     })
@@ -66,13 +66,9 @@ export const register = (data) => dispatch => {
 }
 
 export const order = (data, login) => dispatch => {
-  const params = new URLSearchParams({
-    ...data,
-    login
-  });
   dispatch({type: ADD_ORDER_REQUEST});
   return axios
-    .post(`http://localhost:3500/user/order/?${params}`)
+    .put(`http://localhost:3500/user/order/?`, {data, login})
     .then((payload) => {
       dispatch({type: ADD_ORDER_SUCCESS, payload})
     })

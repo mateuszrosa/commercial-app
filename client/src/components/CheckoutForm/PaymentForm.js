@@ -2,10 +2,21 @@ import { Typography, Button, Divider } from '@mui/material';
 import { Elements, CardElement, ElementsConsumer } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
+import {order} from '../../actions';
+import {useDispatch, useSelector} from 'react-redux';
+
 import {Review} from './Review';
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 export const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptureCheckout }) => {
+
+    const dispatch = useDispatch();
+
+    const {user} = useSelector(({ user }) => ({
+        user
+    }));
+
+    console.log(user)
 
     const handleSubmit = async (event, elements, stripe) => {
         event.preventDefault();
@@ -32,6 +43,9 @@ export const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, o
                 },
             };
             onCaptureCheckout(checkoutToken.id, orderData);
+            if(user) {
+                dispatch(order(orderData, user.login));
+            }
             nextStep();
         }
     };

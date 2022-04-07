@@ -28,8 +28,6 @@ export const user = {
                         "email": email,
                         "city": city,
                         "zip": zip,
-                        "country": country,
-                        "subdivision": subdivision
                     }},
                     { returnOriginal: false, upsert: true }
                 )
@@ -50,6 +48,26 @@ export const user = {
             console.log('Registered new Account');
         } catch(e) {
             return res.status(404).json(e.errors);
+        }
+    },
+    order: async (req, res) => {
+        const {data, login} = req.body;
+        try {
+            const user = await User
+            .findOneAndUpdate(
+                {login},
+                {$set: {
+                    "orders": data
+                }},
+                { returnOriginal: false, upsert: true }
+            )
+            if(!user) {
+                res.status(404).json("Cannot find user to edit");
+            } else {
+                res.json(user);
+            }
+        } catch(err) {
+            res.sendStatus(500)
         }
     }
 }
