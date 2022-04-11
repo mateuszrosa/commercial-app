@@ -56,7 +56,7 @@ export const user = {
             const user = await User
             .findOneAndUpdate(
                 {login},
-                {$set: {
+                {$push: {
                     "orders": data
                 }},
                 { returnOriginal: false, upsert: true }

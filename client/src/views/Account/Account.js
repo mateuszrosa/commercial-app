@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import styles from './Account.module.scss';
+import {Order} from './Order/Order';
 import { Redirect } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
 import {editUser} from '../../actions';
@@ -63,7 +63,18 @@ export const Account = () => {
     </form>
   </FormProvider>
     </TabPanel>
-    <TabPanel value="2">Item Two</TabPanel>
+    <TabPanel value="2">
+    <Typography variant="h6" gutterBottom>Your orders:</Typography>
+    <Grid container justifyContent="center" spacing={4}>
+                    {user.orders.map(item => ( 
+                        item.line_items.map(it => (
+                          <Grid container justifyContent="center" item key={item.id} xs={12} sm={6} md={4} lg={3}>
+                            <Order product={it} />
+                          </Grid>
+                      ))
+                    ))}
+                </Grid>
+    </TabPanel>
     <TabPanel value="3">Item Three</TabPanel>
   </TabContext>
 </Box>
