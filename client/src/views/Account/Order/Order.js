@@ -1,10 +1,8 @@
-import { Card, CardMedia, CardContent, CardActions, Typography, IconButton } from '@mui/material';
+import { Card, CardMedia, CardContent, Typography } from '@mui/material';
 
 import useStyles from './styles.js';
 
 export const Order = ({product}) => {
-
-    console.log(product)
     
     const classes = useStyles();
 
