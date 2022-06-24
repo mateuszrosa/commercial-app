@@ -40,6 +40,9 @@ export const user = {
             res.sendStatus(500)
         }
     },
+    editUserPassword: async (req,res) => {
+        console.log(req.body);
+    },
     register: async (req,res) => {
         const user = new User(req.body);
         try {

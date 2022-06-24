@@ -48,6 +48,16 @@ export const editUser = (data, login) => (dispatch) => {
     })
 }
 
+export const editUserPassword = (data, login) => (dispatch) => {
+  console.log(data)
+  console.log(login)
+  return axios
+    .put(`http://localhost:3500/user/password/?`, {...data, login})
+    .then((payload) => {
+      console.log(payload)
+    })
+}
+
 export const logout = () => (dispatch) => {
   return dispatch({ type: LOGOUT });
 };

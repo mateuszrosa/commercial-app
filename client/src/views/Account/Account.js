@@ -2,7 +2,7 @@ import {useState} from 'react';
 import {Order} from './Order/Order';
 import { Redirect } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
-import {editUser} from '../../actions';
+import {editUser, editUserPassword} from '../../actions';
 import {Box, Tab, Button, Grid, Typography} from '@mui/material';
 import {TabContext, TabList, TabPanel} from '@mui/lab';
 import {useForm,FormProvider} from 'react-hook-form';
@@ -12,8 +12,9 @@ export const Account = () => {
 
   const dispatch = useDispatch();
 
-  const {user} = useSelector(({ user }) => ({
-    user
+  const {user} = useSelector(({ user, error }) => ({
+    user,
+    error: error
   }));
 
   const [value, setValue] = useState('1');
@@ -28,6 +29,14 @@ export const Account = () => {
     setIsEdited(true);
   }
 
+  const changePassword = (data) => {
+    if(data.newPassword !== data.repeatPassword) {
+      console.log('wrong');
+      return;
+    }
+    dispatch(editUserPassword(data, user.login))
+  }
+
   const methods = useForm();
 
   if(isEdited) {
@@ -35,47 +44,62 @@ export const Account = () => {
 };
 
   return (
-  <Box sx={{ width: '100%', typography: 'body1', marginTop: '90px' }}>
+<Box sx={{ width: '100%', typography: 'body1', marginTop: '90px' }}>
   <TabContext value={value}>
     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleChange} aria-label="lab API tabs example">
             <Tab label="Change address" value="1" />
-            <Tab label="Orders" value="2" />
-            <Tab label="Item Three" value="3" />
+            <Tab label="Change password" value="2" />
+            <Tab label="Orders" value="3" />
           </TabList>
     </Box>
     <TabPanel value="1">
-    <Typography variant="h6" gutterBottom></Typography>
-  <FormProvider {...methods}>
-    <form onSubmit={methods.handleSubmit((data) => submit(data))}>
-      <Grid container spacing={3}>
-        <FormInput name="firstName" label="First name" value={user.firstName}/>
-        <FormInput name="lastName" label="Last name" value={user.lastName} />
-        <FormInput name="address1" label="Address" value={user.address1} />
-        <FormInput name="email" label="Email" value={user.email} />
-        <FormInput name="City" label="City" value={user.city} />
-        <FormInput name="zip" label="ZIP/Postal Code" value={user.zip} />
-      </Grid>
-      <br />
-      <div style={{display: 'flex', justifyContent: 'space-between'}}>
-        <Button type="submit" variant="contained" color="primary">Save</Button>
-      </div>
-    </form>
-  </FormProvider>
+      <Typography variant="h6" gutterBottom>Change your address:</Typography>
+      <FormProvider {...methods}>
+        <form onSubmit={methods.handleSubmit((data) => submit(data))}>
+          <Grid container spacing={3}>
+            <FormInput name="firstName" label="First name" value={user.firstName}/>
+            <FormInput name="lastName" label="Last name" value={user.lastName} />
+            <FormInput name="address1" label="Address" value={user.address1} />
+            <FormInput name="email" label="Email" value={user.email} />
+            <FormInput name="City" label="City" value={user.city} />
+            <FormInput name="zip" label="ZIP/Postal Code" value={user.zip} />
+          </Grid>
+          <br />
+          <div style={{display: 'flex', justifyContent: 'space-between'}}>
+            <Button type="submit" variant="contained" color="primary">Save</Button>
+          </div>
+        </form>
+      </FormProvider>
     </TabPanel>
     <TabPanel value="2">
-    <Typography variant="h6" gutterBottom>Your orders:</Typography>
-    <Grid container justifyContent="center" spacing={4}>
-                    {user.orders.map(item => ( 
-                        item.line_items.map(it => (
-                          <Grid container justifyContent="center" item key={it.id} xs={12} sm={6} md={4} lg={3}>
-                            <Order product={it} key={it.id} />
-                          </Grid>
-                      ))
-                    ))}
-                </Grid>
+      <Typography variant="h6" gutterBottom>Change your password</Typography>
+      <FormProvider {...methods}>
+        <form onSubmit={methods.handleSubmit((data) => changePassword(data))}>
+          <Grid container spacing={2}  flexDirection="column">
+            <FormInput type="password" name="oldPassword" label="Old password" />
+            <FormInput type="password" name="newPassword" label="New password" />
+            <FormInput type="password" name="repeatPassword" label="Repeat new password" />
+          </Grid>
+          <br />
+          <div style={{display: 'flex', justifyContent: 'space-between'}}>
+            <Button type="submit" variant="contained" color="primary">Save</Button>
+          </div>
+        </form>
+      </FormProvider>
     </TabPanel>
-    <TabPanel value="3">Item Three</TabPanel>
+    <TabPanel value="3">
+      <Typography variant="h6" gutterBottom>Your orders:</Typography>
+      <Grid container justifyContent="center" spacing={4}>
+        {user.orders.map(item => ( 
+            item.line_items.map(it => (
+              <Grid container justifyContent="center" item key={it.id} xs={12} sm={6} md={3}>
+                <Order product={it} key={it.id} />
+              </Grid>
+          ))
+        ))}
+      </Grid>
+    </TabPanel>
   </TabContext>
 </Box>
   );
