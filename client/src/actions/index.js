@@ -5,6 +5,9 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const EDIT_USER_REQUEST = 'EDIT_USER_REQUEST';
 export const EDIT_USER_SUCCESS = 'EDIT_USER_SUCCESS';
 export const EDIT_USER_FAILURE = 'EDIT_USER_FAILURE';
+export const EDIT_USER_PASWORD_REQUEST = 'EDIT_USER_PASWORD_REQUEST';
+export const EDIT_USER_PASWORD_SUCCESS = 'EDIT_USER_PASWORD_SUCCESS';
+export const EDIT_USER_PASWORD_FAILURE = 'EDIT_USER_PASWORD_FAILURE';
 export const LOGOUT = "LOGOUT";
 export const REGISTER_REQUEST = 'REGISTER_REQUEST';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
@@ -49,12 +52,16 @@ export const editUser = (data, login) => (dispatch) => {
 }
 
 export const editUserPassword = (data, login) => (dispatch) => {
-  console.log(data)
-  console.log(login)
+  dispatch({type: EDIT_USER_PASWORD_REQUEST});
   return axios
-    .put(`http://localhost:3500/user/password/?`, {...data, login})
+    .put(`https://commercial-app1.herokuapp.com/user/password/?`, {...data, login})
     .then((payload) => {
-      console.log(payload)
+      console.log(payload);
+      return dispatch({type: EDIT_USER_PASWORD_SUCCESS, payload})
+    })
+    .catch(err => {
+      console.log(err);
+      return dispatch({type: EDIT_USER_PASWORD_FAILURE});
     })
 }
 
