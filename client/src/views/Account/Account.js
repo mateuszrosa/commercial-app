@@ -12,13 +12,14 @@ export const Account = () => {
 
   const dispatch = useDispatch();
 
-  const {user} = useSelector(({ user, error }) => ({
+  const {user, error} = useSelector(({ user, error }) => ({
     user,
     error: error
   }));
 
   const [value, setValue] = useState('1');
   const [isEdited, setIsEdited] = useState(false);
+  const [isValid, setIsValid] = useState(true);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -31,7 +32,7 @@ export const Account = () => {
 
   const changePassword = (data) => {
     if(data.newPassword !== data.repeatPassword) {
-      console.log('wrong');
+      setIsValid(false)
       return;
     }
     dispatch(editUserPassword(data, user.login))
@@ -74,8 +75,10 @@ export const Account = () => {
     </TabPanel>
     <TabPanel value="2">
       <Typography variant="h6" gutterBottom>Change your password</Typography>
+      {!isValid && <Typography color="error" variant="h7">Passwords are not the same</Typography>}
+      {error && <Typography color="error" variant="h7">{error.message}</Typography>}
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit((data) => changePassword(data))}>
+        <form onSubmit={methods.handleSubmit((data) => changePassword(data))} style={{marginTop: "15px"}}>
           <Grid container spacing={2}  flexDirection="column">
             <FormInput type="password" name="oldPassword" label="Old password" />
             <FormInput type="password" name="newPassword" label="New password" />

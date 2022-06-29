@@ -4,6 +4,9 @@ import {LOGIN_FAILURE} from '../actions';
 import {EDIT_USER_REQUEST} from '../actions';
 import {EDIT_USER_SUCCESS} from '../actions';
 import {EDIT_USER_FAILURE} from '../actions';
+import {EDIT_USER_PASWORD_REQUEST} from '../actions';
+import {EDIT_USER_PASWORD_SUCCESS} from '../actions';
+import {EDIT_USER_PASWORD_FAILURE} from '../actions';
 import {LOGOUT} from '../actions';
 import {REGISTER_REQUEST} from '../actions';
 import {REGISTER_SUCCESS} from '../actions';
@@ -55,6 +58,20 @@ export const rootReducer = (state = initialState, action) => {
             }
         }
         case EDIT_USER_FAILURE: {
+            return {
+                ...state,
+                error: {
+                    ...action.error
+                }
+            }
+        }
+        case EDIT_USER_PASWORD_REQUEST: {
+            return state;
+        }
+        case EDIT_USER_PASWORD_SUCCESS: {
+            return state;
+        }
+        case EDIT_USER_PASWORD_FAILURE: {
             return {
                 ...state,
                 error: {
