@@ -43,6 +43,7 @@ export const rootReducer = (state = initialState, action) => {
         }
         case LOGOUT: {
             state.user = {};
+            delete state.error;
             return { ...state };
         }
         case EDIT_USER_REQUEST: {
@@ -66,6 +67,7 @@ export const rootReducer = (state = initialState, action) => {
             }
         }
         case EDIT_USER_PASWORD_REQUEST: {
+            delete state.error;
             return state;
         }
         case EDIT_USER_PASWORD_SUCCESS: {

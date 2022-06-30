@@ -45,8 +45,7 @@ export const editUser = (data, login) => (dispatch) => {
     .then((payload) => {
       return dispatch({type: EDIT_USER_SUCCESS, payload})
     })
-    .catch(err => {
-      console.log(err)
+    .catch(({response}) => {
       return dispatch({ type: EDIT_USER_FAILURE, error: response.data });
     })
 }
@@ -60,7 +59,6 @@ export const editUserPassword = (data, login) => (dispatch) => {
       return dispatch({type: EDIT_USER_PASWORD_SUCCESS, payload})
     })
     .catch(({response}) => {
-      console.log(response.data);
       return dispatch({type: EDIT_USER_PASWORD_FAILURE, error: response.data});
     })
 }

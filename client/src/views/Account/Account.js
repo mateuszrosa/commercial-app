@@ -31,6 +31,7 @@ export const Account = () => {
   }
 
   const changePassword = (data) => {
+    setIsValid(true)
     if(data.newPassword !== data.repeatPassword) {
       setIsValid(false)
       return;
@@ -76,6 +77,7 @@ export const Account = () => {
     <TabPanel value="2">
       <Typography variant="h6" gutterBottom>Change your password</Typography>
       {!isValid && <Typography color="error" variant="h7">Passwords are not the same</Typography>}
+      {!isValid && error ? <br /> : null}
       {error && <Typography color="error" variant="h7">{error.message}</Typography>}
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit((data) => changePassword(data))} style={{marginTop: "15px"}}>
