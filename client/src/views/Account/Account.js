@@ -50,7 +50,7 @@ export const Account = () => {
           </TabList>
     </Box>
     <TabPanel value="1">
-      <Typography variant="h6" gutterBottom>Change your address:</Typography>
+      <Typography variant="h6" gutterBottom>Change your details:</Typography>
       {error && <Typography color="error" variant="h7">{error.message}</Typography>}
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit((data) => changeAddress(data))}  style={{marginTop: "15px"}}>

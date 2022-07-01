@@ -42,7 +42,7 @@ export const editUser = (data, login) => (dispatch) => {
   });
   dispatch({ type: EDIT_USER_REQUEST });
   return axios
-    .put(`http://localhost:3500/user/update/?${params}`)
+    .put(`https://commercial-app1.herokuapp.com/user/update/?${params}`)
     .then((payload) => {
       return dispatch({type: EDIT_USER_SUCCESS, payload})
     })
