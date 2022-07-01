@@ -14,6 +14,7 @@ import {REGISTER_FAILURE} from '../actions';
 import {ADD_ORDER_REQUEST} from '../actions';
 import {ADD_ORDER_SUCCESS} from '../actions';
 import {ADD_ORDER_FAILURE} from '../actions';
+import {RESET_ERRORS} from '../actions';
 
 const initialState = {
     user: {}
@@ -43,6 +44,10 @@ export const rootReducer = (state = initialState, action) => {
         }
         case LOGOUT: {
             state.user = {};
+            delete state.error;
+            return { ...state };
+        }
+        case RESET_ERRORS: {
             delete state.error;
             return { ...state };
         }

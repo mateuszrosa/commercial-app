@@ -84,6 +84,21 @@ schema.post('save', function (error, doc, next) {
         error.errors = { message: error.message.split(": ")[2] }
     }
     next(error);
+});
+
+schema.post('findOneAndUpdate', function(error, doc,next) {
+    if (error.code === 11000) {
+        for (let key in error.keyValue) {
+            if (key === 'email') {
+                error.errors = { message: 'That email is already used' }
+            } else if (key === 'login') {
+                error.errors = { message: 'That login is already used' }
+            }
+        }
+    } else if (error) {
+        error.errors = { message: error.message.split(": ")[2] }
+    }
+    next(error);
 })
 
 schema.methods = {

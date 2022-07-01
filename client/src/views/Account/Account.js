@@ -1,8 +1,7 @@
 import {useState} from 'react';
 import {Order} from './Order/Order';
-import { Redirect } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
-import {editUser, editUserPassword} from '../../actions';
+import {editUser, editUserPassword, resetErrors} from '../../actions';
 import {Box, Tab, Button, Grid, Typography} from '@mui/material';
 import {TabContext, TabList, TabPanel} from '@mui/lab';
 import {useForm,FormProvider} from 'react-hook-form';
@@ -18,16 +17,15 @@ export const Account = () => {
   }));
 
   const [value, setValue] = useState('1');
-  const [isEdited, setIsEdited] = useState(false);
   const [isValid, setIsValid] = useState(true);
 
   const handleChange = (event, newValue) => {
+    dispatch(resetErrors());
     setValue(newValue);
   };
 
-  const submit = (data) => {
+  const changeAddress = (data) => {
     dispatch(editUser(data, user.login));
-    setIsEdited(true);
   }
 
   const changePassword = (data) => {
@@ -41,10 +39,6 @@ export const Account = () => {
 
   const methods = useForm();
 
-  if(isEdited) {
-    return <Redirect to="/" />;
-};
-
   return (
 <Box sx={{ width: '100%', typography: 'body1', marginTop: '90px' }}>
   <TabContext value={value}>
@@ -57,8 +51,9 @@ export const Account = () => {
     </Box>
     <TabPanel value="1">
       <Typography variant="h6" gutterBottom>Change your address:</Typography>
+      {error && <Typography color="error" variant="h7">{error.message}</Typography>}
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit((data) => submit(data))}>
+        <form onSubmit={methods.handleSubmit((data) => changeAddress(data))}  style={{marginTop: "15px"}}>
           <Grid container spacing={3}>
             <FormInput name="firstName" label="First name" value={user.firstName}/>
             <FormInput name="lastName" label="Last name" value={user.lastName} />

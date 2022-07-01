@@ -8,13 +8,14 @@ export const EDIT_USER_FAILURE = 'EDIT_USER_FAILURE';
 export const EDIT_USER_PASWORD_REQUEST = 'EDIT_USER_PASWORD_REQUEST';
 export const EDIT_USER_PASWORD_SUCCESS = 'EDIT_USER_PASWORD_SUCCESS';
 export const EDIT_USER_PASWORD_FAILURE = 'EDIT_USER_PASWORD_FAILURE';
-export const LOGOUT = "LOGOUT";
+export const LOGOUT = 'LOGOUT';
 export const REGISTER_REQUEST = 'REGISTER_REQUEST';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAILURE = 'REGISTER_FAILURE';
 export const ADD_ORDER_REQUEST = 'ADD_ORDER_REQUEST';
 export const ADD_ORDER_SUCCESS = 'ADD_ORDER_SUCCESS';
 export const ADD_ORDER_FAILURE = 'ADD_ORDER_FAILURE';
+export const RESET_ERRORS = 'RESET_ERRORS';
 
 const axios = require('axios');
 
@@ -41,7 +42,7 @@ export const editUser = (data, login) => (dispatch) => {
   });
   dispatch({ type: EDIT_USER_REQUEST });
   return axios
-    .put(`https://commercial-app1.herokuapp.com/user/update/?${params}`)
+    .put(`http://localhost:3500/user/update/?${params}`)
     .then((payload) => {
       return dispatch({type: EDIT_USER_SUCCESS, payload})
     })
@@ -88,4 +89,8 @@ export const order = (data, login) => dispatch => {
       dispatch({type: ADD_ORDER_SUCCESS, payload})
     })
     .catch(err => console.log(err))
+}
+
+export const resetErrors = () => dispatch => {
+  dispatch({type: RESET_ERRORS});
 }

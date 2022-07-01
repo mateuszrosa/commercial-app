@@ -16,6 +16,7 @@ export const user = {
         user.password = undefined;
         res.json(user);
     },
+
     editUser: async (req,res) => {
         const {login, firstName, lastName, address1, email, city, zip, country, subdivision} = req.query;
         try {
@@ -38,7 +39,7 @@ export const user = {
                     res.json(user);
                 }
         } catch (e) {
-            res.sendStatus(500)
+            return res.status(404).json(e.errors);
         }
     },
     editUserPassword: async (req,res) => {
