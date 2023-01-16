@@ -23,11 +23,13 @@ export const login = ({login, password}) => dispatch => {
     const params = new URLSearchParams({
         login,
         password,
-      });
+      });  
+    console.log(params)
       dispatch({ type: LOGIN_REQUEST });
   return axios
-    .get(`https://commercial-app1.herokuapp.com/user/login/?${params}`)
+    .get(`https://commercialapp.fly.dev/user/login/?${params}`)
     .then((payload) => {
+      console.log(payload)
       return dispatch({ type: LOGIN_SUCCESS, payload });
     })
     .catch(({ response }) => {
@@ -42,7 +44,7 @@ export const editUser = (data, login) => (dispatch) => {
   });
   dispatch({ type: EDIT_USER_REQUEST });
   return axios
-    .put(`https://commercial-app1.herokuapp.com/user/update/?${params}`)
+    .put(`https://commercialapp.fly.dev/user/update/?${params}`)
     .then((payload) => {
       return dispatch({type: EDIT_USER_SUCCESS, payload})
     })
@@ -54,7 +56,7 @@ export const editUser = (data, login) => (dispatch) => {
 export const editUserPassword = (data, login) => (dispatch) => {
   dispatch({type: EDIT_USER_PASWORD_REQUEST});
   return axios
-    .put(`https://commercial-app1.herokuapp.com/user/password/?`, {...data, login})
+    .put(`https://commercialapp.fly.dev/user/password/?`, {...data, login})
     .then((payload) => {
       console.log(payload);
       return dispatch({type: EDIT_USER_PASWORD_SUCCESS, payload})
@@ -72,7 +74,7 @@ export const register = (data) => dispatch => {
   const date = getDate(new Date());
   dispatch({ type: REGISTER_REQUEST });
   return axios
-    .post(`https://commercial-app1.herokuapp.com/user/register/?`, {...data, date})
+    .post(`https://commercialapp.fly.dev/user/register/?`, {...data, date})
     .then((payload) => {
       dispatch({ type: REGISTER_SUCCESS, payload });
     })
@@ -84,7 +86,7 @@ export const register = (data) => dispatch => {
 export const order = (data, login) => dispatch => {
   dispatch({type: ADD_ORDER_REQUEST});
   return axios
-    .put(`https://commercial-app1.herokuapp.com/user/order/?`, {data, login})
+    .put(`https://commercialapp.fly.dev/user/order/?`, {data, login})
     .then((payload) => {
       dispatch({type: ADD_ORDER_SUCCESS, payload})
     })
