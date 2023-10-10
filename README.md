@@ -1,4 +1,4 @@
-<h1>Commercial-App</hi>
+<h1>Commercial-App</h1>
 <p>Full stack eCommerce website shop. Fully functional bike shop using commerce.js. For transaction used Stripe. Client side is created in React, server side is based on Express.js. Server is connected with mongoDB database where users data are saved.</p>
 
 <h2>Features</h2>
